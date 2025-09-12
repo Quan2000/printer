@@ -6,7 +6,7 @@
 	</head>
 	<body data-rsssl=1>
 		<script src="https://raw.githubusercontent.com/mebjas/html5-qrcode/refs/heads/master/minified/html5-qrcode.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+		<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
 		<style>
 			.button
 			{
@@ -19,7 +19,7 @@
 				font-family: Times New Roman;
 				font-size: 2vh;
 			}
-			.label1
+			.label
 			{
 				display: inline-block;
 				width: 30vw;
@@ -30,6 +30,18 @@
 			{
 				width: 70vw;
 				height: 4vh;
+			}
+			.button1
+			{
+				display: none;
+				width: 60vw;
+				height: 4vh;
+				background: purple;
+				color: white;
+				border: 5px solid black;
+				border-radius: 2vh;
+				font-family: Times New Roman;
+				font-size: 2vh;
 			}
 			main
 			{
@@ -48,6 +60,7 @@
 			}
 			#bill
 			{
+				display: none;
 				justify-content: center;
 				align-items: center;
 				text-align: center;
@@ -64,35 +77,35 @@
 		<main>
 			<div id="reader"></div>
 			<div id="result">
-				<label class="label1">Mã chuyến đi</label>
+				<label class="label">Mã chuyến đi</label>
 				<input type="text" class="text" id="code" />
 				<br>
 				<br>
-				<label class="label1">Tên tài xế</label>
+				<label class="label">Tên tài xế</label>
 				<input type="text" class="text" id="name" />
 				<br>
 				<br>
-				<label class="label1">Biển số xe</label>
+				<label class="label">Biển số xe</label>
 				<input type="text" class="text" id="plate" />
 				<br>
 				<br>
-				<label class="label1">Quãng đường</label>
+				<label class="label">Quãng đường</label>
 				<input type="number" class="text" id="distance" />
 				<br>
 				<br>
-				<label class="label1">Phí</label>
+				<label class="label">Phí</label>
 				<input type="number" class="text" id="fee" />
 				<br>
 				<br>
-				<label class="label1">Dịch vụ thêm</label>
+				<label class="label">Dịch vụ thêm</label>
 				<input type="number" class="text" id="addon" />
 				<br>
 				<br>
-				<label class="label1">Phụ phí</label>
+				<label class="label">Phụ phí</label>
 				<input type="number" class="text" id="surcharge" />
 				<br>
 				<br>
-				<label class="label1">Giảm giá</label>
+				<label class="label">Giảm giá</label>
 				<input type="number" class="text" id="discount" />
 				<br>
 				<br>
@@ -183,6 +196,9 @@ NO REFUND/KHÔNG HOÀN TIỀN
 ................................................................................................
 				</p>
 			</div>
+			<div>
+				<button id="print" class="button1" onclick="print()">IN</button>
+			</div>
 		</main>
 		<script>
 			var code;
@@ -218,8 +234,8 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
 				document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
 				document.getElementById("total").value = 1000 * parseInt(obj.total_pay_display.slice(0, -1));
-				document.getElementById("result").style.display = "block";
 				document.getElementById("reader").style.display = "none";
+				document.getElementById("result").style.display = "block";
 			}
 			function error(result)
 			{
@@ -246,11 +262,15 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				code = document.getElementById("code").value;
 				name = document.getElementById("name").value;
 				plate = document.getElementById("plate").value;
+				document.getElementById("result").style.display = "none";
+				document.getElementById("bill").style.display = "block";
+				document.getElementById("print").style.display = "block";
 			}
 		</script>
 	</body>
 
 </html>
+
 
 
 
