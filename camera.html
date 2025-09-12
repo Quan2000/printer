@@ -22,11 +22,12 @@
 			{
 				display: inline-block;
 				width: 30vw;
-				height: 2vh
+				height: 2vh;
+				background: cyan;
 			}
 			.text
 			{
-				width: 60vw;
+				width: 70vw;
 				height: 4vh;
 			}
 			main
@@ -51,29 +52,38 @@
 				<label class="label1">Mã chuyến đi</label>
 				<input type="text" class="text" id="code" />
 				<br>
+				<br>
 				<label class="label1">Tên tài xế</label>
 				<input type="text" class="text" id="name" />
+				<br>
 				<br>
 				<label class="label1">Biển số xe</label>
 				<input type="text" class="text" id="plate" />
 				<br>
+				<br>
 				<label class="label1">Quãng đường</label>
 				<input type="number" class="text" id="distance" />
+				<br>
 				<br>
 				<label class="label1">Phí</label>
 				<input type="number" class="text" id="fee" />
 				<br>
+				<br>
 				<label class="label1">Dịch vụ thêm</label>
 				<input type="number" class="text" id="addon" />
+				<br>
 				<br>
 				<label class="label1">Phụ phí</label>
 				<input type="number" class="text" id="surcharge" />
 				<br>
+				<br>
 				<label class="label1">Giảm giá</label>
 				<input type="number" class="text" id="discount" />
 				<br>
+				<br>
 				<label class="label1">Tổng tiền</label>
 				<input type="number" class="text" disabled=true id="total"/>
+				<br>
 				<br>
 				<button class="button" onclick="create()">Tạo hóa đơn</button>
 			</div>
@@ -113,6 +123,7 @@
 	</body>
 
 </html>
+
 
 
 
