@@ -118,11 +118,11 @@
 				document.getElementById("name").value = obj.driver_name;
 				document.getElementById("plate").value = obj.vehicle_license_plate;
 				document.getElementById("distance").value = obj.distance_display.slice(0, -2);
-				document.getElementById("fee").value = obj.base_fee_display.slice(0, -1);
-				document.getElementById("addon").value = obj.addons_fee_display.slice(0, -1);
-				document.getElementById("surcharge").value = obj.surcharge_fee_display.slice(0, -1);
-				document.getElementById("discount").value = obj.discount_display.slice(0, -1);
-				document.getElementById("total").value = obj.total_pay_display.slice(0, -1);
+				document.getElementById("fee").value = 1000 * parseInt(obj.base_fee_display.slice(0, -1));
+				document.getElementById("addon").value = 1000 * parseInt(obj.addons_fee_display.slice(0, -1));
+				document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
+				document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
+				document.getElementById("total").value = 1000 * parseInt(obj.total_pay_display.slice(0, -1));
 				document.getElementById("result").style.display = "block";
 				document.getElementById("reader").style.display = "none";
 				
@@ -170,6 +170,7 @@
 	</body>
 
 </html>
+
 
 
 
