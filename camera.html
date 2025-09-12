@@ -115,14 +115,65 @@
 				document.getElementById("total").value = obj.total_pay_display.slice(0, -1);
 				document.getElementById("result").style.display = "block";
 				document.getElementById("reader").style.display = "none";
+				timer = setInterval(total, 2000);
 			}
 			function error(result)
 			{
+			}
+			function total()
+			{
+				var fee;
+				var addon;
+				var surcharge;
+				var discount;
+				if(document.getElementById("fee").value === "") fee = 0;
+				else fee = document.getElementById("fee").value;
+				if(document.getElementById("addon").value === "") addon = 0;
+				else addon = document.getElementById("addon").value;
+				if(document.getElementById("surcharge").value === "") surcharge = 0;
+				else surcharge = document.getElementById("surcharge").value;
+				if(document.getElementById("discount").value === "") discount = 0;
+				else discount = document.getElementById("discount").value;
+				document.getElementById("total").value = parseInt(fee) + parseInt(addon) + parseInt(surcharge) - parseInt(discount);
+			}
+			function create()
+			{
+				var code;
+				var name;
+				var plate;
+				var distance;
+				var fee;
+				var addon;
+				var surcharge;
+				var discount;
+				var total;
+				if(document.getElementById("fee").value === "") fee = 0;
+				else if(document.getElementById("fee").value < 0) fee = 0;
+				else fee = document.getElementById("fee").value;
+				if(document.getElementById("addon").value === "") addon = 0;
+				else if(document.getElementById("addon").value < 0) addon = 0;
+				else addon = document.getElementById("addon").value;
+				if(document.getElementById("surcharge").value === "") surcharge = 0;
+				else if(document.getElementById("surcharge").value < 0) surcharge = 0;
+				else surcharge = document.getElementById("surcharge").value;
+				if(document.getElementById("discount").value === "") discount = 0;
+				else if(document.getElementById("discount").value < 0) discount = 0;
+				else discount = document.getElementById("discount").value;
+				if(document.getElementById("total").value === "") total = 0;
+				else if(document.getElementById("total").value < 0) total = 0;
+				else total = document.getElementById("total").value;
+				if(document.getElementById("distance").value === "") distance = 0;
+				else if(document.getElementById("distance").value < 0) distance = 0;
+				else distance = document.getElementById("distance").value;
+				code = document.getElementById("code").value;
+				name = document.getElementById("name").value;
+				plate = document.getElementById("plate").value;
 			}
 		</script>
 	</body>
 
 </html>
+
 
 
 
