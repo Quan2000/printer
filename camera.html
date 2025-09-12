@@ -42,6 +42,7 @@
 			}
 			#result
 			{
+				display: none;
 				font-size: 2vh;
 			}
 		</style>
@@ -84,15 +85,6 @@
 			</div>
 		</main>
 		<script>
-			var code;
-			var name;
-			var plate;
-			var distance;
-			var fee;
-			var addon;
-			var surcharge;
-			var discount;
-			var total;
 			const scanner = new Html5QrcodeScanner("reader",
 			{
 				qrbox:
@@ -124,6 +116,15 @@
 			}
 			function create()
 			{
+				var code;
+				var name;
+				var plate;
+				var distance;
+				var fee;
+				var addon;
+				var surcharge;
+				var discount;
+				var total;
 				if(document.getElementById("fee").value === "") fee = 0;
 				else if(document.getElementById("fee").value < 0) fee = 0;
 				else fee = document.getElementById("fee").value;
@@ -148,6 +149,7 @@
 	</body>
 
 </html>
+
 
 
 
