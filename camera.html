@@ -81,10 +81,6 @@
 				<input type="number" class="text" id="discount" />
 				<br>
 				<br>
-				<label class="label1">Tổng tiền</label>
-				<input type="number" class="text" disabled=true id="total"/>
-				<br>
-				<br>
 				<button class="button" onclick="create()">Tạo hóa đơn</button>
 			</div>
 		</main>
@@ -98,7 +94,6 @@
 			var surcharge;
 			var discount;
 			var total;
-			setInterval(total, 10000);
 			const scanner = new Html5QrcodeScanner("reader",
 			{
 				qrbox:
@@ -125,22 +120,9 @@
 				document.getElementById("total").value = 1000 * parseInt(obj.total_pay_display.slice(0, -1));
 				document.getElementById("result").style.display = "block";
 				document.getElementById("reader").style.display = "none";
-				setInterval(total, 2000);
 			}
 			function error(result)
 			{
-			}
-			function total()
-			{
-				if(document.getElementById("fee").value === "") fee = 0;
-				else fee = document.getElementById("fee").value;
-				if(document.getElementById("addon").value === "") addon = 0;
-				else addon = document.getElementById("addon").value;
-				if(document.getElementById("surcharge").value === "") surcharge = 0;
-				else surcharge = document.getElementById("surcharge").value;
-				if(document.getElementById("discount").value === "") discount = 0;
-				else discount = document.getElementById("discount").value;
-				document.getElementById("total").value += 1;
 			}
 			function create()
 			{
@@ -157,8 +139,7 @@
 				else if(document.getElementById("discount").value < 0) discount = 0;
 				else discount = document.getElementById("discount").value;
 				if(document.getElementById("total").value === "") total = 0;
-				else if(document.getElementById("total").value < 0) total = 0;
-				else total = document.getElementById("total").value;
+				total = parseInt(fee) + parseInt(addon) + parseInt(surcharge) - parseInt(discount);
 				if(document.getElementById("distance").value === "") distance = 0;
 				else if(document.getElementById("distance").value < 0) distance = 0;
 				else distance = document.getElementById("distance").value;
@@ -170,6 +151,7 @@
 	</body>
 
 </html>
+
 
 
 
