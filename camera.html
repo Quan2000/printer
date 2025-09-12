@@ -9,23 +9,30 @@
 		<style>
 			.button
 			{
-				width: 40vw;
+				width: 60vw;
 				height: 10vh;
 				background: purple;
 				color: white;
+				border: 5px solid black;
 				border-radius: 5vh;
 				font-family: Times New Roman;
 				font-size: 5vh;
 			}
-			.label
+			.label1
 			{
 				display: inline-block;
-				width: 20vw;
+				width: 40vw;
+				height: 5vh
+			}
+			.label2
+			{
+				display: inline-block;
+				width: 10vw;
 				height: 5vh
 			}
 			.text
 			{
-				width: 20vw;
+				width: 50vw;
 				height: 5vh;
 			}
 			main
@@ -46,49 +53,49 @@
 		<main>
 			<div id="reader"></div>
 			<div id="result">
-				<label class="label">Mã chuyến đi</label>
+				<label class="label1">Mã chuyến đi</label>
 				<input type="text" class="text" id="code" />
-				<label class="label"></label>
+				<label class="label2"></label>
 				<br>
 				<br>
-				<label class="label">Tên tài xế</label>
+				<label class="label1">Tên tài xế</label>
 				<input type="text" class="text" id="name" />
-				<label class="label"></label>
+				<label class="label2"></label>
 				<br>
 				<br>
-				<label class="label">Biển số xe</label>
+				<label class="label1">Biển số xe</label>
 				<input type="text" class="text" id="plate" />
-				<label class="label"></label>
+				<label class="label2"></label>
 				<br>
 				<br>
-				<label class="label">Quãng đường</label>
+				<label class="label1">Quãng đường</label>
 				<input type="number" class="text" id="distance" />
-				<label class="label">km</label>
+				<label class="label2">km</label>
 				<br>
 				<br>
-				<label class="label">Phí</label>
+				<label class="label1">Phí</label>
 				<input type="number" class="text" id="fee" />
-				<label class="label">đ</label>
+				<label class="label2">đ</label>
 				<br>
 				<br>
-				<label class="label">Dịch vụ thêm</label>
+				<label class="label1">Dịch vụ thêm</label>
 				<input type="number" class="text" id="addon" />
-				<label class="label">đ</label>
+				<label class="label2">đ</label>
 				<br>
 				<br>
-				<label class="label">Phụ phí</label>
+				<label class="label1">Phụ phí</label>
 				<input type="number" class="text" id="surcharge" />
-				<label class="label">đ</label>
+				<label class="label2">đ</label>
 				<br>
 				<br>
-				<label class="label">Giảm giá</label>
+				<label class="label1">Giảm giá</label>
 				<input type="number" class="text" id="discount" />
-				<label class="label">đ</label>
+				<label class="label2">đ</label>
 				<br>
 				<br>
-				<label class="label">Tổng tiền</label>
+				<label class="label1">Tổng tiền</label>
 				<input type="number" class="text" disabled=true id="total"/>
-				<label class="label">đ</label>
+				<label class="label2">đ</label>
 				<br>
 				<br>
 				<button class="button" onclick="create()">Tạo hóa đơn</button>
@@ -127,4 +134,5 @@
 			}
 		</script>
 	</body>
+
 </html>
