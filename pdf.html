@@ -127,7 +127,33 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			window.onload = create();
 			function create()
 			{
-				
+				try
+				{
+					var link = window.location.href;
+					const decodelink = decodeURIComponent(link);
+					var position = decodelink.search("&qr=") + 4;
+					var qr = decodelink.substring(position);
+					const obj = JSON.parse(qr);
+					document.getElementById("code").innerHTML = obj.order_id;
+					document.getElementById("name").innerHTML = obj.driver_name;
+					var plate = obj.vehicle_license_plate;
+					document.getElementById("plate").innerHTML = plate.substring(0, 7) + "<br>" + plate.substring(7);
+					document.getElementById("fee").innerHTML = obj.base_fee_display;
+					document.getElementById("discount").innerHTML = obj.discount_display;
+					document.getElementById("distance").innerHTML = obj.distance_display;
+					document.getElementById("total").innerHTML = obj.total_pay_display;
+					document.getElementById("addon").innerHTML = obj.addons_fee_display;
+					document.getElementById("surcharge").innerHTML = obj.surcharge_fee_display;
+					document.getElementById("surcharge").innerHTML = obj.surcharge_fee_display;
+					var date = new Date();
+					document.getElementById("time").innerHTML = date.getDate().toString() + "/" + (date.getMonth()+1).toString() + "/" + date.getFullYear().toString() + "<br>" + date.getHours().toString() + ":" + date.getMinutes().toString();
+					document.getElementById("print").disabled = false;
+				}
+				catch(err)
+				{
+					document.getElementById("print").disabled = true;
+					alert("QR không hợp lệ");
+				}
 			}
 			function print()
 			{
@@ -157,6 +183,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 	</body>
 
 </html>
+
 
 
 
