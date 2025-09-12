@@ -250,7 +250,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				if(document.getElementById("discount").value === "") discount = 0;
 				else if(document.getElementById("discount").value < 0) discount = 0;
 				else discount = document.getElementById("discount").value;
-				if(document.getElementById("total").value === "") total = 0;
 				total = parseInt(fee) + parseInt(addon) + parseInt(surcharge) - parseInt(discount);
 				if(document.getElementById("distance").value === "") distance = 0;
 				else if(document.getElementById("distance").value < 0) distance = 0;
@@ -265,6 +264,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 	</body>
 
 </html>
+
 
 
 
