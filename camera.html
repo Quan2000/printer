@@ -85,6 +85,15 @@
 			</div>
 		</main>
 		<script>
+			var code;
+			var name;
+			var plate;
+			var distance;
+			var fee;
+			var addon;
+			var surcharge;
+			var discount;
+			var total;
 			const scanner = new Html5QrcodeScanner("reader",
 			{
 				qrbox:
@@ -99,6 +108,15 @@
 			{
 				scanner.clear();
 				document.getElementById("reader").remove();
+				const obj = JSON.parse(result);
+				document.getElementById("code").value = obj.order_id;
+				document.getElementById("name").value = obj.driver_name;
+				document.getElementById("plate").value = obj.vehicle_license_plate;
+				document.getElementById("distance").value = obj.distance_display.slice(0, -2);
+				document.getElementById("fee").value = 1000 * parseInt(obj.base_fee_display.slice(0, -1));
+				document.getElementById("addon").value = 1000 * parseInt(obj.addons_fee_display.slice(0, -1));
+				document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
+				document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
 				document.getElementById("result").style.display = "block";
 				document.getElementById("reader").style.display = "none";
 			}
@@ -107,15 +125,6 @@
 			}
 			function create()
 			{
-				var code;
-				var name;
-				var plate;
-				var distance;
-				var fee;
-				var addon;
-				var surcharge;
-				var discount;
-				var total;
 				if(document.getElementById("fee").value === "") fee = 0;
 				else if(document.getElementById("fee").value < 0) fee = 0;
 				else fee = document.getElementById("fee").value;
@@ -138,8 +147,8 @@
 			}
 		</script>
 	</body>
-
 </html>
+
 
 
 
