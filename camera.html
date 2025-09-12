@@ -196,6 +196,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 ................................................................................................
 				</p>
 			</div>
+			<br>
 			<div>
 				<button id="print" class="button1" onclick="print()">IN</button>
 			</div>
@@ -271,9 +272,34 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				document.getElementById("print").style.display = "block";
 				document.getElementById("result").style.display = "none";
 			}
+			function print()
+			{
+				const bill = document.getElementById("bill");
+				html2pdf().from(bill).set({
+					margin: [8, 4, 2, 4],
+					filename: "hoadon.pdf",
+					image:
+					{
+						type: "png",
+						quality: 0.8
+					},
+					html2canvas:
+					{
+						scale: window.devicePixelRatio,
+						useCORS: true
+					},
+					jsPDF:
+					{
+						unit: "mm",
+						format: [56, 142],
+						orientation: "portrait"
+					}
+				}).save();
+			}
 		</script>
 	</body>
 </html>
+
 
 
 
