@@ -10,30 +10,24 @@
 			.button
 			{
 				width: 60vw;
-				height: 5vh;
+				height: 4vh;
 				background: purple;
 				color: white;
 				border: 5px solid black;
 				border-radius: 2vh;
 				font-family: Times New Roman;
-				font-size: 3vh;
+				font-size: 2vh;
 			}
 			.label1
 			{
 				display: inline-block;
 				width: 30vw;
-				height: 5vh
-			}
-			.label2
-			{
-				display: inline-block;
-				width: 5vw;
-				height: 5vh
+				height: 2vh
 			}
 			.text
 			{
 				width: 60vw;
-				height: 5vh;
+				height: 4vh;
 			}
 			main
 			{
@@ -48,7 +42,7 @@
 			#result
 			{
 				display: none;
-				font-size: 3vh;
+				font-size: 2vh;
 			}
 		</style>
 		<main>
@@ -56,48 +50,30 @@
 			<div id="result">
 				<label class="label1">Mã chuyến đi</label>
 				<input type="text" class="text" id="code" />
-				<label class="label2"></label>
-				<br>
 				<br>
 				<label class="label1">Tên tài xế</label>
 				<input type="text" class="text" id="name" />
-				<label class="label2"></label>
-				<br>
 				<br>
 				<label class="label1">Biển số xe</label>
 				<input type="text" class="text" id="plate" />
-				<label class="label2"></label>
-				<br>
 				<br>
 				<label class="label1">Quãng đường</label>
 				<input type="number" class="text" id="distance" />
-				<label class="label2">km</label>
-				<br>
 				<br>
 				<label class="label1">Phí</label>
 				<input type="number" class="text" id="fee" />
-				<label class="label2">đ</label>
-				<br>
 				<br>
 				<label class="label1">Dịch vụ thêm</label>
 				<input type="number" class="text" id="addon" />
-				<label class="label2">đ</label>
-				<br>
 				<br>
 				<label class="label1">Phụ phí</label>
 				<input type="number" class="text" id="surcharge" />
-				<label class="label2">đ</label>
-				<br>
 				<br>
 				<label class="label1">Giảm giá</label>
 				<input type="number" class="text" id="discount" />
-				<label class="label2">đ</label>
-				<br>
 				<br>
 				<label class="label1">Tổng tiền</label>
 				<input type="number" class="text" disabled=true id="total"/>
-				<label class="label2">đ</label>
-				<br>
 				<br>
 				<button class="button" onclick="create()">Tạo hóa đơn</button>
 			</div>
@@ -137,5 +113,6 @@
 	</body>
 
 </html>
+
 
 
