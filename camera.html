@@ -10,6 +10,7 @@
 		<style>
 			.button
 			{
+				left: 20vw;
 				width: 60vw;
 				height: 4vh;
 				background: purple;
@@ -22,6 +23,7 @@
 			.button1
 			{
 				display: none;
+				left: 20vw;
 				width: 60vw;
 				height: 4vh;
 				background: purple;
@@ -215,17 +217,24 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			{
 				scanner.clear();
 				document.getElementById("reader").remove();
-				const obj = JSON.parse(result);
-				document.getElementById("code").value = obj.order_id;
-				document.getElementById("name").value = obj.driver_name;
-				document.getElementById("plate").value = obj.vehicle_license_plate;
-				document.getElementById("distance").value = obj.distance_display.slice(0, -2);
-				document.getElementById("fee").value = 1000 * parseInt(obj.base_fee_display.slice(0, -1));
-				document.getElementById("addon").value = 1000 * parseInt(obj.addons_fee_display.slice(0, -1));
-				document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
-				document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
-				document.getElementById("result").style.display = "block";
-				document.getElementById("reader").style.display = "none";
+				try
+				{
+					const obj = JSON.parse(result);
+					document.getElementById("code").value = obj.order_id;
+					document.getElementById("name").value = obj.driver_name;
+					document.getElementById("plate").value = obj.vehicle_license_plate;
+					document.getElementById("distance").value = obj.distance_display.slice(0, -2);
+					document.getElementById("fee").value = 1000 * parseInt(obj.base_fee_display.slice(0, -1));
+					document.getElementById("addon").value = 1000 * parseInt(obj.addons_fee_display.slice(0, -1));
+					document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
+					document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
+					document.getElementById("result").style.display = "block";
+					document.getElementById("reader").style.display = "none";
+				}
+				catch(err)
+				{
+					alert("QR không hợp lệ");
+				}
 			}
 			function error(result)
 			{
@@ -253,7 +262,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				else if(document.getElementById("distance").value < 0) distance = 0;
 				else distance = document.getElementById("distance").value;
 				var total = parseInt(fee) + parseInt(addon) + parseInt(surcharge) - parseInt(discount);
-				
 				document.getElementById("code1").innerHTML = document.getElementById("code").value;
 				document.getElementById("name1").innerHTML = document.getElementById("name").value;
 				var plate = document.getElementById("plate").value;
@@ -266,7 +274,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				document.getElementById("surcharge1").innerHTML = surcharge.toString() + "đ";
 				var date = new Date();
 				document.getElementById("time1").innerHTML = date.getDate().toString() + "/" + (date.getMonth()+1).toString() + "/" + date.getFullYear().toString() + "<br>" + date.getHours().toString() + ":" + date.getMinutes().toString();
-				
 				document.getElementById("bill").style.display = "block";
 				document.getElementById("print").style.display = "block";
 				document.getElementById("result").style.display = "none";
@@ -298,6 +305,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</script>
 	</body>
 </html>
+
 
 
 
