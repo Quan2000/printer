@@ -267,44 +267,37 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				else if(document.getElementById("distance").value < 0) distance = 0;
 				else distance = document.getElementById("distance").value;
 				var total = parseInt(fee) + parseInt(addon) + parseInt(surcharge) + parseInt(discount);
-				
 				document.getElementById("code1").innerHTML = document.getElementById("code").value;
 				document.getElementById("name1").innerHTML = document.getElementById("name").value;
 				var plate = document.getElementById("plate").value;
 				document.getElementById("plate1").innerHTML = plate.substring(0, 7) + "<br>" + plate.substring(7);
 				document.getElementById("distance1").innerHTML = distance.toString() + "km";
-				
 				var newmoney;
 				var money = fee.toString() + "đ";
 				if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
 				else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
 				else newmoney = money;
 				document.getElementById("fee1").innerHTML = newmoney;
-
 				money = discount.toString() + "đ";
 				if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
 				else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
 				else newmoney = money;
 				document.getElementById("discount1").innerHTML = newmoney;
-
 				money = total.toString() + "đ";
 				if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
 				else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
 				else newmoney = money;
 				document.getElementById("total1").innerHTML = newmoney;
-
 				money = addon.toString() + "đ";
 				if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
 				else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
 				else newmoney = money;
 				document.getElementById("addon1").innerHTML = newmoney;
-
 				money = surcharge.toString() + "đ";
 				if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
 				else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
 				else newmoney = money;
 				document.getElementById("surcharge1").innerHTML = newmoney;
-				
 				var date = new Date();
 				document.getElementById("time1").innerHTML = date.getDate().toString() + "/" + (date.getMonth()+1).toString() + "/" + date.getFullYear().toString() + "<br>" + date.getHours().toString() + ":" + date.getMinutes().toString();
 				document.getElementById("result").remove();
@@ -338,60 +331,3 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</script>
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
