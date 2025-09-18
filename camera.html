@@ -337,15 +337,16 @@ NO REFUND/KHÔNG HOÀN TIỀN
 						format: [56, 142],
 						orientation: "portrait"
 					}
-				}).outputPdf('datauristring').then(
-					function(pdfDataUri)
+				}).toPdf().get('pdf').then(
+					function (pdf)
 					{
-    					window.open(pdfDataUri, '_blank');
+  						window.open(pdf.output('bloburl'), '_blank');
 					});
 			}
 		</script>
 	</body>
 </html>
+
 
 
 
