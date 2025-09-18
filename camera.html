@@ -324,7 +324,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					image:
 					{
 						type: "png",
-						quality: 0.8
+						quality: 0.9
 					},
 					html2canvas:
 					{
@@ -337,16 +337,15 @@ NO REFUND/KHÔNG HOÀN TIỀN
 						format: [56, 142],
 						orientation: "portrait"
 					}
-				}).outputPdf('blob').then(
-					function (pdfBlob)
+				}).outputPdf('datauristring').then(
+					function(pdfDataUri)
 					{
-        				var pdfUrl = URL.createObjectURL(pdfBlob);
-        				window.open(pdfUrl, '_blank');
-    				});
-			}
+    					window.open(pdfDataUri, '_blank');
+					});
 		</script>
 	</body>
 </html>
+
 
 
 
