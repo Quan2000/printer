@@ -340,12 +340,13 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}).toPdf().get('pdf').then(
 					function (pdf)
 					{
-  						window.open(pdf.output('blob'), '_blank');
+  						window.open(pdf.output('blob'), '_self');
 					});
 			}
 		</script>
 	</body>
 </html>
+
 
 
 
