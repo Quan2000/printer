@@ -202,6 +202,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			</div>
 		</main>
 		<script>
+			setTimeout(init, 2000);
 			const scanner = new Html5QrcodeScanner("reader",
 			{
 				qrbox:
@@ -216,6 +217,10 @@ NO REFUND/KHÔNG HOÀN TIỀN
                 },
 			});
 			scanner.render(success, error);
+			function init()
+			{
+				document.getElementById("html5-qrcode-button-torch").style.display = "none";
+			}
 			function success(result)
 			{
 				scanner.clear();
@@ -322,6 +327,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</script>
 	</body>
 </html>
+
 
 
 
