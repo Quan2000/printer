@@ -11,11 +11,11 @@
 			button
 			{
 				width: 80vw;
-				height: 4vh;
-				background: purple;
+				height: 5vh;
+				background: cyan;
 				color: white;
-				border: 5px solid black;
-				border-radius: 2vh;
+				border: none;
+				border-radius: 1vh;
 				font-family: Times New Roman;
 				font-size: 2vh;
 			}
@@ -24,13 +24,6 @@
 				position: absolute;
 				left: 20vw;
 				width: 60vw;
-				height: 4vh;
-				background: purple;
-				color: white;
-				border: 5px solid black;
-				border-radius: 2vh;
-				font-family: Times New Roman;
-				font-size: 2vh;
 			}
 			.button1
 			{
@@ -38,13 +31,6 @@
 				position: absolute;
 				left: 20vw;
 				width: 60vw;
-				height: 4vh;
-				background: purple;
-				color: white;
-				border: 5px solid black;
-				border-radius: 2vh;
-				font-family: Times New Roman;
-				font-size: 2vh;
 			}
 			.label
 			{
@@ -321,15 +307,9 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				html2pdf().from(bill).set({
 					margin: [8, 4, 2, 4],
 					filename: "hoadon.pdf",
-					image:
-					{
-						type: "png",
-						quality: 0.9
-					},
 					html2canvas:
 					{
 						scale: window.devicePixelRatio,
-						useCORS: true
 					},
 					jsPDF:
 					{
@@ -342,6 +322,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</script>
 	</body>
 </html>
+
 
 
 
