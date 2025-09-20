@@ -322,11 +322,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function exit()
 		{
-			document.getElementById("result").style.display = "none";
-			document.getElementById("bill").style.display = "none";
-			document.getElementById("print").style.display = "none";
-			document.getElementById("reader").style.display = "block";
-			scanner.render(success, error);
+			window.location.reload();
 		}
 		function print()
 		{
@@ -348,6 +344,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
