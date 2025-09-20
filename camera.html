@@ -234,7 +234,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		scanner.render(success, error);
 		function success(result)
 		{
-			scanner.stop();
+			scanner.clear();
 			try
 			{
 				const obj = JSON.parse(result);
@@ -326,7 +326,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			document.getElementById("bill").style.display = "none";
 			document.getElementById("print").style.display = "none";
 			document.getElementById("reader").style.display = "block";
-			scanner.start(success, error);
+			scanner.render(success, error);
 		}
 		function print()
 		{
@@ -348,6 +348,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
