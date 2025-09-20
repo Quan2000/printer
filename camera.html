@@ -79,9 +79,9 @@
 			font-size: 10px;
 		}
 	</style>
-	<script src="https://raw.githubusercontent.com/Quan2000/printer/refs/heads/main/html5-qrcode.min.js"></script>
-	<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
 	<body data-rsssl=1>
+		<script src="https://raw.githubusercontent.com/Quan2000/printer/refs/heads/main/html5-qrcode.min.js"></script>
+		<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
 		<main>
 			<div id="reader"></div>
 			<div id="result">
@@ -208,7 +208,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				<button id="print" class="button1" onclick="print()">IN</button>
 			</div>
 		</main>
-	</body>
 		<script>
 			const scanner = new Html5QrcodeScanner("reader",
 			{
@@ -327,6 +326,8 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}).save();
 			}
 		</script>
+	</body>
 </html>
+
 
 
