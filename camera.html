@@ -225,22 +225,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			scanner.render(success, error);
 			function success(result)
 			{
-				try
-				{
-					const obj = JSON.parse(result);
-					document.getElementById("code").value = obj.order_id;
-					document.getElementById("name").value = obj.driver_name;
-					document.getElementById("plate").value = obj.vehicle_license_plate;
-					document.getElementById("distance").value = obj.distance_display.slice(0, -2);
-					document.getElementById("fee").value = 1000 * parseInt(obj.base_fee_display.slice(0, -1));
-					document.getElementById("addon").value = 1000 * parseInt(obj.addons_fee_display.slice(0, -1));
-					document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
-					document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
-				}
-				catch(err)
-				{
-					alert("QR không hợp lệ");
-				}
 			}
 			function error(result)
 			{
@@ -326,6 +310,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</script>
 	</body>
 </html>
+
 
 
 
