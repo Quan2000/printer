@@ -81,7 +81,7 @@
 	</style>
 	<script src="https://raw.githubusercontent.com/Quan2000/printer/refs/heads/main/html5-qrcode.min.js"></script>
 	<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
-	<body data-rsssl=1 id="body">
+	<body data-rsssl=1>
 		<main>
 			<div id="reader"></div>
 			<div id="result">
@@ -227,7 +227,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			{
 				try
 				{
-					document.getElementById("body").backgroundImage  = "";
+					document.body.style.backgroundImage = "";
 					const obj = JSON.parse(result);
 					document.getElementById("code").value = obj.order_id;
 					document.getElementById("name").value = obj.driver_name;
@@ -329,6 +329,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</script>
 	</body>
 </html>
+
 
 
 
