@@ -34,8 +34,8 @@
 		{
 			display: none;
 			position: absolute;
-			left: 20vw;
-			width: 60vw;
+			left: 55vw;
+			width: 35vw;
 		}
 		.button2
 		{
@@ -214,8 +214,9 @@ NO REFUND/KHÔNG HOÀN TIỀN
 ................................................................................................
 				</p>
 			</div>
-			<div>
-				<button id="print" class="button1" onclick="print()">IN</button>
+			<div id="print">
+				<button class="button2" onclick="exit()">Đóng</button>
+				<button class="button1" onclick="print()">IN</button>
 			</div>
 		</main>
 	</body>
@@ -236,7 +237,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		scanner.render(success, error);
 		function success(result)
 		{
-			scanner.pause(true);
+			scanner.stop();
 			try
 			{
 				const obj = JSON.parse(result);
@@ -249,6 +250,8 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
 				document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
 				document.getElementById("reader").style.display = "none";
+				document.getElementById("bill").style.display = "none";
+				document.getElementById("print").style.display = "none";
 				document.getElementById("result").style.display = "block";
 			}
 			catch(err)
@@ -316,6 +319,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			var date = new Date();
 			document.getElementById("time1").innerHTML = date.getDate().toString() + "/" + (date.getMonth()+1).toString() + "/" + date.getFullYear().toString() + "<br>" + date.getHours().toString() + ":" + date.getMinutes().toString();
 			document.getElementById("result").style.display = "none";
+			document.getElementById("reader").style.display = "none";
 			document.getElementById("bill").style.display = "block";
 			document.getElementById("print").style.display = "block";
 		}
@@ -325,7 +329,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			document.getElementById("bill").style.display = "none";
 			document.getElementById("print").style.display = "none";
 			document.getElementById("reader").style.display = "block";
-			scanner.resume();
+			scanner.start(success, error);
 		}
 		function print()
 		{
@@ -347,4 +351,5 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
