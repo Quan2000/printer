@@ -227,7 +227,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			{
 				try
 				{
-					document.body.style.backgroundImage = "";
+					scanner.stop();
 					const obj = JSON.parse(result);
 					document.getElementById("code").value = obj.order_id;
 					document.getElementById("name").value = obj.driver_name;
@@ -329,6 +329,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</script>
 	</body>
 </html>
+
 
 
 
