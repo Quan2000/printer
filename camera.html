@@ -9,7 +9,7 @@
 		{
 			background-image: url("https://drive.google.com/thumbnail?id=1ZfsvaQkasDi7TL7Uk_PLVmxyxKkgHqSG");
 			background-repeat: no-repeat;
-			background-size: 180px 360px;
+			background-size: 360px 720px;
 			background-position: center center;
 		}
 		button
@@ -81,7 +81,7 @@
 	</style>
 	<script src="https://raw.githubusercontent.com/Quan2000/printer/refs/heads/main/html5-qrcode.min.js"></script>
 	<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
-	<body data-rsssl=1>
+	<body data-rsssl=1 id="body">
 		<main>
 			<div id="reader"></div>
 			<div id="result">
@@ -227,6 +227,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			{
 				try
 				{
+					document.getElementById("body").backgroundImage  = "";
 					const obj = JSON.parse(result);
 					document.getElementById("code").value = obj.order_id;
 					document.getElementById("name").value = obj.driver_name;
@@ -328,6 +329,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</script>
 	</body>
 </html>
+
 
 
 
