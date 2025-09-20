@@ -27,8 +27,8 @@
 		.button
 		{
 			position: absolute;
-			left: 20vw;
-			width: 60vw;
+			left: 55vw;
+			width: 35vw;
 		}
 		.button1
 		{
@@ -36,6 +36,15 @@
 			position: absolute;
 			left: 20vw;
 			width: 60vw;
+		}
+		.button2
+		{
+			position: absolute;
+			left: 10vw;
+			width: 35vw;
+			color: black;
+			background-color: white;
+			border: 1px solid black;
 		}
 		.label
 		{
@@ -117,7 +126,8 @@
 				<input type="number" class="text" id="discount" />
 				<br>
 				<br>
-				<button class="button" onclick="create()">Tạo hóa đơn</button>
+				<button class="button2" onclick="exit()">Đóng</button>
+				<button class="button" onclick="create()">In biên lai</button>
 			</div>
 			<div id="bill">
 				<p>	
@@ -304,9 +314,17 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				document.getElementById("surcharge1").innerHTML = newmoney;
 				var date = new Date();
 				document.getElementById("time1").innerHTML = date.getDate().toString() + "/" + (date.getMonth()+1).toString() + "/" + date.getFullYear().toString() + "<br>" + date.getHours().toString() + ":" + date.getMinutes().toString();
-				document.getElementById("result").remove();
+				document.getElementById("result")..style.display = "none";
 				document.getElementById("bill").style.display = "block";
 				document.getElementById("print").style.display = "block";
+			}
+			function exit()
+			{
+				document.getElementById("result").style.display = "none";
+				document.getElementById("bill").style.display = "none";
+				document.getElementById("print").style.display = "none";
+				document.getElementById("reader").style.display = "block";
+				scanner.resume();
 			}
 			function print()
 			{
@@ -329,6 +347,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</script>
 	</body>
 </html>
+
 
 
 
