@@ -209,5 +209,124 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			</div>
 		</main>
 	</body>
+		<script>
+			const scanner = new Html5QrcodeScanner("reader",
+			{
+				qrbox:
+				{
+					width: 500,
+					height: 500,
+				},
+				fps: 20,
+				videoConstraints:
+				{
+                    facingMode: { exact: "environment" },
+                },
+			});
+			scanner.render(success, error);
+			function success(result)
+			{
+				try
+				{
+					const obj = JSON.parse(result);
+					document.getElementById("code").value = obj.order_id;
+					document.getElementById("name").value = obj.driver_name;
+					document.getElementById("plate").value = obj.vehicle_license_plate;
+					document.getElementById("distance").value = obj.distance_display.slice(0, -2);
+					document.getElementById("fee").value = 1000 * parseInt(obj.base_fee_display.slice(0, -1));
+					document.getElementById("addon").value = 1000 * parseInt(obj.addons_fee_display.slice(0, -1));
+					document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
+					document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
+					document.getElementById("reader").style.display = "none";
+					document.getElementById("result").style.display = "block";
+				}
+				catch(err)
+				{
+					alert("QR không hợp lệ");
+				}
+			}
+			function error(result)
+			{
+			}
+			function create()
+			{
+				var distance;
+				var fee;
+				var addon;
+				var surcharge;
+				var discount;
+				if(document.getElementById("fee").value === "") fee = 0;
+				else if(document.getElementById("fee").value < 0) fee = 0;
+				else fee = document.getElementById("fee").value;
+				if(document.getElementById("addon").value === "") addon = 0;
+				else if(document.getElementById("addon").value < 0) addon = 0;
+				else addon = document.getElementById("addon").value;
+				if(document.getElementById("surcharge").value === "") surcharge = 0;
+				else if(document.getElementById("surcharge").value < 0) surcharge = 0;
+				else surcharge = document.getElementById("surcharge").value;
+				if(document.getElementById("discount").value === "") discount = 0;
+				else if(document.getElementById("discount").value > 0) discount = 0;
+				else discount = document.getElementById("discount").value;
+				if(document.getElementById("distance").value === "") distance = 0;
+				else if(document.getElementById("distance").value < 0) distance = 0;
+				else distance = document.getElementById("distance").value;
+				var total = parseInt(fee) + parseInt(addon) + parseInt(surcharge) + parseInt(discount);
+				document.getElementById("code1").innerHTML = document.getElementById("code").value;
+				document.getElementById("name1").innerHTML = document.getElementById("name").value;
+				var plate = document.getElementById("plate").value;
+				document.getElementById("plate1").innerHTML = plate.substring(0, 7) + "<br>" + plate.substring(7);
+				document.getElementById("distance1").innerHTML = distance.toString() + "km";
+				var newmoney;
+				var money = fee.toString() + "đ";
+				if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
+				else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
+				else newmoney = money;
+				document.getElementById("fee1").innerHTML = newmoney;
+				money = discount.toString() + "đ";
+				if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
+				else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
+				else newmoney = money;
+				document.getElementById("discount1").innerHTML = newmoney;
+				money = total.toString() + "đ";
+				if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
+				else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
+				else newmoney = money;
+				document.getElementById("total1").innerHTML = newmoney;
+				money = addon.toString() + "đ";
+				if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
+				else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
+				else newmoney = money;
+				document.getElementById("addon1").innerHTML = newmoney;
+				money = surcharge.toString() + "đ";
+				if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
+				else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
+				else newmoney = money;
+				document.getElementById("surcharge1").innerHTML = newmoney;
+				var date = new Date();
+				document.getElementById("time1").innerHTML = date.getDate().toString() + "/" + (date.getMonth()+1).toString() + "/" + date.getFullYear().toString() + "<br>" + date.getHours().toString() + ":" + date.getMinutes().toString();
+				document.getElementById("result")..style.display = "none";
+				document.getElementById("bill").style.display = "block";
+				document.getElementById("print").style.display = "block";
+			}
+			function print()
+			{
+				const bill = document.getElementById("bill");
+				html2pdf().from(bill).set({
+					margin: [8, 4, 2, 4],
+					filename: "hoadon.pdf",
+					html2canvas:
+					{
+						scale: window.devicePixelRatio,
+					},
+					jsPDF:
+					{
+						unit: "mm",
+						format: [56, 142],
+						orientation: "portrait"
+					}
+				}).save();
+			}
+		</script>
 </html>
+
 
