@@ -90,7 +90,8 @@
 	<body data-rsssl=1>
 		<main>
 			<div id="reader">
-				<button id="test" onclick="test()">TEST</button>
+				<button onclick="write()">WRITE</button>
+				<button onclick="read()">READ</button>
 			</div>
 			<div id="result">
 				<label class="label">Mã chuyến đi</label>
@@ -261,9 +262,16 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function error(result)
 		{
 		}
-		function test()
+		function write()
 		{
-			alert("TEST");
+			var writeindex = 1;
+			localStorage.setItem("index", writeindex);
+			alert("WRITE");
+		}
+		function read()
+		{
+			var readindex = localStorage.getItem("index");
+			alert("READ " + readindex.toString());
 		}
 		function create()
 		{
@@ -350,6 +358,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
