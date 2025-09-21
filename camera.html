@@ -254,20 +254,31 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}
 				else
 				{
-					document.getElementById("code").value = obj.order_id;
-					document.getElementById("name").value = obj.driver_name;
-					document.getElementById("plate").value = obj.vehicle_license_plate;
-					document.getElementById("distance").value = obj.distance_display.slice(0, -2);
-					document.getElementById("fee").value = 1000 * parseInt(obj.base_fee_display.slice(0, -1));
-					document.getElementById("addon").value = 1000 * parseInt(obj.addons_fee_display.slice(0, -1));
-					document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
-					document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
-					document.getElementById("reader").style.display = "none";
-					document.getElementById("bill").style.display = "none";
-					document.getElementById("print").style.display = "none";
-					document.getElementById("result").style.display = "block";
+					var status = localStorage.getItem("active");
+					if(status === "1")
+					{
+						document.getElementById("code").value = obj.order_id;
+						document.getElementById("name").value = obj.driver_name;
+						document.getElementById("plate").value = obj.vehicle_license_plate;
+						document.getElementById("distance").value = obj.distance_display.slice(0, -2);
+						document.getElementById("fee").value = 1000 * parseInt(obj.base_fee_display.slice(0, -1));
+						document.getElementById("addon").value = 1000 * parseInt(obj.addons_fee_display.slice(0, -1));
+						document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
+						document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
+						document.getElementById("reader").style.display = "none";
+						document.getElementById("bill").style.display = "none";
+						document.getElementById("print").style.display = "none";
+						document.getElementById("result").style.display = "block";
+					}
+					else
+					{
+						alert("Chưa kích hoạt");
+						document.getElementById("reader").style.display = "none";
+						document.getElementById("bill").style.display = "none";
+						document.getElementById("print").style.display = "none";
+						document.getElementById("result").style.display = "none";
+					}
 				}
-				
 			}
 			catch(err)
 			{
@@ -282,16 +293,14 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			var status = "1";
 			localStorage.setItem("active", status);
 			alert("Kích hoạt thành công");
+			window.location.reload();
 		}
 		function unactive()
 		{
 			var status = "0";
 			localStorage.setItem("active", status);
 			alert("Kích hoạt thất bại");
-		}
-		function read()
-		{
-			var readindex = localStorage.getItem("myindex");
+			window.location.reload();
 		}
 		function create()
 		{
@@ -378,6 +387,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
