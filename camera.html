@@ -89,10 +89,7 @@
 		<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
 	<body data-rsssl=1>
 		<main>
-			<div id="reader">
-				<button onclick="test()">WRITE</button>
-				<button onclick="read()">READ</button>
-			</div>
+			<div id="reader"></div>
 			<div id="result">
 				<label class="label">Mã chuyến đi</label>
 				<input type="text" class="text" id="code" />
@@ -234,6 +231,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				facingMode: { exact: "environment" },
 			},
 		});
+		scanner.render(success, error);
 		function success(result)
 		{
 			scanner.clear();
@@ -266,12 +264,10 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		{
 			var writeindex = "17";
 			localStorage.setItem("myindex", writeindex);
-			alert("WRITE");
 		}
 		function read()
 		{
 			var readindex = localStorage.getItem("myindex");
-			alert("READ " + readindex.toString());
 		}
 		function create()
 		{
@@ -358,6 +354,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
