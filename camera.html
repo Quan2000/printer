@@ -89,7 +89,9 @@
 		<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
 	<body data-rsssl=1>
 		<main>
-			<div id="reader"></div>
+			<div id="reader">
+				<button id="test" onclick="test()">TEST</button>
+			</div>
 			<div id="result">
 				<label class="label">Mã chuyến đi</label>
 				<input type="text" class="text" id="code" />
@@ -260,6 +262,10 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function error(result)
 		{
 		}
+		function test()
+		{
+			alert("TEST");
+		}
 		function create()
 		{
 			var distance;
@@ -345,6 +351,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
