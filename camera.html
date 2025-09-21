@@ -269,6 +269,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					else
 					{
 						alert("Chưa kích hoạt");
+						window.location.reload();
 					}
 				}
 			}
@@ -289,8 +290,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function unactive()
 		{
-			var status = "0";
-			localStorage.setItem("active", status);
 			alert("Kích hoạt thất bại");
 			window.location.reload();
 		}
@@ -379,6 +378,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
