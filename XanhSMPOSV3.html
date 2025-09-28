@@ -395,6 +395,8 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			else if(document.getElementById("distance").value < 0) distance = 0;
 			else distance = document.getElementById("distance").value;
 			var total = parseInt(fee) + parseInt(addon) + parseInt(surcharge) + parseInt(discount);
+			localStorage.setItem("name", document.getElementById("name").value);
+			localStorage.setItem("plate", document.getElementById("plate").value);
 			document.getElementById("code1").innerHTML = document.getElementById("code").value;
 			document.getElementById("name1").innerHTML = document.getElementById("name").value;
 			document.getElementById("plate1").innerHTML = document.getElementById("plate").value;
@@ -456,9 +458,18 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function measure()
 		{
-			document.body.style.backgroundImage = "none";
-			document.getElementById("begin").style.display = "none";
-			document.getElementById("location").style.display = "block";
+			var status = localStorage.getItem("active");
+			status = "1";
+			if(status === "1")
+			{
+				var cost = localStorage.getItem("cost");
+				if(typeof cost !== "number") cost = 10000;
+				document.getElementById("cost").value = cost;
+				document.body.style.backgroundImage = "none";
+				document.getElementById("begin").style.display = "none";
+				document.getElementById("location").style.display = "block";
+			}
+			else alert("Chưa kích hoạt");
 		}
 		function scan()
 		{
@@ -541,7 +552,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}
 			}
 			else if(ismeasure == 3) km = km + d;
-			document.getElementById("cost").value = d.toString();
 			document.getElementById("km").innerHTML = (km / 1000).toString();
 		}
 		function showError(error)
@@ -557,7 +567,27 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			document.getElementById("generate").disabled = false;
 			document.getElementById("km").innerHTML = "0";
 		}
+		function generate()
+		{
+			var cost = document.getElementById("cost").value;
+			var name = localStorage.getItem("name");
+			var plate = localStorage.getItem("plate");
+			localStorage.setItem("cost", cost);
+			if(typeof name !== "string") name = "";
+			if(typeof plate !== "string") plate = "";
+			document.getElementById("code").value = "";
+			document.getElementById("name").value = name;
+			document.getElementById("plate").value = plate;
+			document.getElementById("distance").value = km / 1000;
+			document.getElementById("fee").value = Math.floor(cost * km / 1000);
+			document.getElementById("addon").value = 0;
+			document.getElementById("surcharge").value = 0;
+			document.getElementById("discount").value = 0;
+			document.getElementById("location").style.display = "none";
+			document.getElementById("result").style.display = "block";
+		}
 	</script>
 </html>
+
 
 
