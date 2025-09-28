@@ -141,7 +141,7 @@ km
 				<br>
 				<br>
 				<input type="number" class="text" id="cost" />
-				<label>/km</label>
+				<label>đ/km</label>
 				<br>
 				<br>
 				<button id="reset" class="button2" onclick="reset()">Làm mới </button>
@@ -464,7 +464,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			if(status === "1")
 			{
 				var cost = parseInt(localStorage.getItem("cost"));
-				if(!isNaN(cost)) cost = 10000;
+				if(isNaN(cost)) cost = 10000;
 				document.getElementById("cost").value = cost;
 				document.body.style.backgroundImage = "none";
 				document.getElementById("begin").style.display = "none";
@@ -591,6 +591,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
