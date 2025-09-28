@@ -131,7 +131,7 @@
 			</div>
 			<div id="location">
 				<p>
-					<b id="distance" class="text1">0.0</b>
+					<b id="distance" class="text1">0</b>
 					<br>
 km
 				</p>
@@ -144,11 +144,12 @@ km
 				<label>/km</label>
 				<br>
 				<br>
-				<button id="start" onclick="start()">Bắt đầu</button>
+				<button id="start" class="button2" onclick="start()">Bắt đầu</button>
+				<button id="reset" class="button" onclick="reset()">Làm mới </button>
 				<br>
 				<br>
-				<button class="button2" onclick="exit()">Đóng</button>
-				<button class="button" onclick="genẻrate()">In biên lai</button>
+				<button id="exit" class="button2" onclick="exit()">Đóng</button>
+				<button id="generate" class="button" onclick="genẻrate()">In biên lai</button>
 			</div>
 			<div id="reader"></div>
 			<div id="result">
@@ -469,11 +470,17 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				if(document.getElementById("start").innerHTML == "Bắt đầu")
 				{
 					document.getElementById("start").innerHTML = "Kết thúc";
+					document.getElementById("reset").disabled = true;
+					document.getElementById("exit").disabled = true;
+					document.getElementById("generate").disabled = true;
 					ismeasure = 1;
 				}
 				else
 				{
 					document.getElementById("start").innerHTML = "Bắt đầu";
+					document.getElementById("reset").disabled = false;
+					document.getElementById("exit").disabled = false;
+					document.getElementById("generate").disabled = false;
 					ismeasure = 3;
 				}
 				navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -481,6 +488,10 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			else
 			{
 				ismeasure = 0;
+				document.getElementById("start").innerHTML = "Bắt đầu";
+				document.getElementById("reset").disabled = false;
+				document.getElementById("exit").disabled = false;
+				document.getElementById("generate").disabled = false;
 				alert("Chức năng định vị lỗi");
 			}
 		}
@@ -494,14 +505,18 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				lat1 = position.coords.latitude;
 				lon1 = position.coords.longitude;
 				ismeasure = 2;
-				alert("Start");
+			}
+			else if(ismeasure == 2)
+			{
+				lat2 = position.coords.latitude;
+				lon2 = position.coords.longitude;
+				showDistance();
 			}
 			else if(ismeasure == 3)
 			{
 				lat2 = position.coords.latitude;
 				lon2 = position.coords.longitude;
 				ismeasure = 0;
-				alert("End");
 				showDistance();
 			}
 		}
@@ -516,17 +531,36 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			Math.cos(φ1) * Math.cos(φ2) *
 			Math.sin(Δλ/2) * Math.sin(Δλ/2);
 			const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-			const d = Math.floor(R * c);
-			document.getElementById("distance").innerHTML = d.toString();
+			const d = Math.floor(R * c) / 1000;
+			var v = parseFloat(document.getElementById("distance").innerHTML);
+			if(ismeasure == 2)
+			{
+				if(d > 0.05) v = v + d;
+			}
+			else if(ismeasure == 3) v = v + d;
+			document.getElementById("distance").innerHTML = v.toString();
 		}
 		function showError(error)
 		{
 			ismeasure = 0;
 			document.getElementById("start").innerHTML = "Bắt đầu";
+			document.getElementById("reset").disabled = false;
+			document.getElementById("exit").disabled = false;
+			document.getElementById("generate").disabled = false;
 			alert("Chức năng định vị lỗi");
+		}
+		function reset()
+		{
+			ismeasure = 0;
+			document.getElementById("start").innerHTML = "Bắt đầu";
+			document.getElementById("reset").disabled = false;
+			document.getElementById("exit").disabled = false;
+			document.getElementById("generate").disabled = false;
+			document.getElementById("distance").innerHTML = "0";
 		}
 	</script>
 </html>
+
 
 
 
