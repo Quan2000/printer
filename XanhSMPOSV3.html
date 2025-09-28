@@ -466,9 +466,9 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		{
 			if(navigator.geolocation)
 			{
+				navigator.geolocation.getCurrentPosition(showPosition, showError);
 				if(document.getElementById("start").innerHTML == "Bắt đầu") document.getElementById("start").innerHTML = "Kết thúc";
 				else document.getElementById("start").innerHTML = "Bắt đầu";
-				navigator.geolocation.getCurrentPosition(showPosition, showError);
 			}
 			else alert("Chức năng định vị lỗi");
 		}
@@ -509,6 +509,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
