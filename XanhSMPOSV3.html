@@ -329,7 +329,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				else
 				{
 					var status = localStorage.getItem("active");
-					status = "1";
 					if(status === "1")
 					{
 						document.getElementById("code").value = obj.order_id;
@@ -460,7 +459,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function measure()
 		{
 			var status = localStorage.getItem("active");
-			status = "1";
 			if(status === "1")
 			{
 				var cost = parseInt(localStorage.getItem("cost"));
@@ -545,7 +543,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			const d = Math.floor(R * c);
 			if(ismeasure == 2)
 			{
-				if(d > 0)
+				if(d > 50)
 				{
 					km = km + d;
 					lat1 = lat2;
@@ -591,6 +589,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
