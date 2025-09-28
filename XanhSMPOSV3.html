@@ -131,7 +131,7 @@
 			</div>
 			<div id="location">
 				<p>
-					<b id="distance" class="text1">0</b>
+					<b id="km" class="text1">0</b>
 					<br>
 km
 				</p>
@@ -298,7 +298,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		var lat2;
 		var lon2;
 		var ismeasure = 0;
-		var distance = 0;
+		var km = 0;
 		setInterval(update, 10000);
 		const scanner = new Html5QrcodeScanner("reader",
 		{
@@ -534,14 +534,14 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			{
 				if(d > 0)
 				{
-					distance = distance + d;
+					km = km + d;
 					lat1 = lat2;
 					lon1 = lon2;
 				}
 			}
-			else if(ismeasure == 3) distance = distance + d;
+			else if(ismeasure == 3) km = km + d;
 			document.getElementById("cost").value = d.toString();
-			document.getElementById("distance").innerHTML = distance.toString();
+			document.getElementById("km").innerHTML = km.toString();
 		}
 		function showError(error)
 		{
@@ -549,56 +549,12 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function reset()
 		{
 			ismeasure = 0;
-			distance = 0;
+			km = 0;
 			document.getElementById("start").innerHTML = "Bắt đầu";
 			document.getElementById("reset").disabled = false;
 			document.getElementById("exit").disabled = false;
 			document.getElementById("generate").disabled = false;
-			document.getElementById("distance").innerHTML = "0";
+			document.getElementById("km").innerHTML = "0";
 		}
 	</script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
