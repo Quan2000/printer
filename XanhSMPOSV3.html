@@ -65,6 +65,7 @@
 		.text1
 		{
 			font-size: 10vh;
+			color: #009688;
 		}
 		main
 		{
@@ -130,10 +131,12 @@
 			</div>
 			<div id="location">
 				<p>
-					<b id="distance" class="text1">123.45</b>
+					<b id="distance" class="text1">0.0</b>
 					<br>
 km
 				</p>
+				<br>
+				<br>
 				<label class="label">Đơn giá</label>
 				<br>
 				<br>
@@ -141,7 +144,7 @@ km
 				<label>/km</label>
 				<br>
 				<br>
-				<button onclick="statrt()">Bắt đầu</button>
+				<button id="start" onclick="statrt()">Bắt đầu</button>
 				<br>
 				<br>
 				<button class="button2" onclick="exit()">Đóng</button>
@@ -289,6 +292,12 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</main>
 	</body>
 	<script>
+		var lat1;
+		var lon1;
+		var lat2;
+		var lon2;
+		var ismeasure = false;
+		setInterval(update, 10000);
 		const scanner = new Html5QrcodeScanner("reader",
 		{
 			qrbox:
@@ -453,8 +462,54 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			document.getElementById("begin").style.display = "none";
 			document.getElementById("reader").style.display = "block";
 		}
+		function start()
+		{
+			if(navigator.geolocation)
+			{
+				if(document.getElementById("start").innerHTML == "Bắt đầu") document.getElementById("start").innerHTML = "Kết thúc";
+				else document.getElementById("start").innerHTML = "Bắt đầu";
+				navigator.geolocation.getCurrentPosition(showPosition, showError);
+			}
+			else alert("Chức năng định vị lỗi");
+		}
+		function update()
+		{
+		}
+		function showPosition(position)
+		{
+			if(document.getElementById("start").innerHTML == "Bắt đầu")
+			{
+				lat1 = position.coords.latitude;
+				lon1 = position.coords.longitude;
+			}
+			else
+			{
+				lat2 = position.coords.latitude;
+				lon2 = position.coords.longitude;
+				showDistance();
+			}
+		}
+		function showDistance()
+		{
+			const R = 6371e3;
+			const φ1 = lat1 * Math.PI/180;
+			const φ2 = lat2 * Math.PI/180;
+			const Δφ = (lat2-lat1) * Math.PI/180;
+			const Δλ = (lon2-lon1) * Math.PI/180;
+			const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+			Math.cos(φ1) * Math.cos(φ2) *
+			Math.sin(Δλ/2) * Math.sin(Δλ/2);
+			const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+			const d = Math.floor(R * c) / 1000;
+			document.getElementById("distance").innerHTML = d.toString();
+		}
+		function showError(error)
+		{
+			alert("Chức năng định vị lỗi");
+		}
 	</script>
 </html>
+
 
 
 
