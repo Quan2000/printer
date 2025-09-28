@@ -395,6 +395,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			else if(document.getElementById("distance").value < 0) distance = 0;
 			else distance = document.getElementById("distance").value;
 			var total = parseInt(fee) + parseInt(addon) + parseInt(surcharge) + parseInt(discount);
+			localStorage.setItem("code", document.getElementById("code").value);
 			localStorage.setItem("name", document.getElementById("name").value);
 			localStorage.setItem("plate", document.getElementById("plate").value);
 			document.getElementById("code1").innerHTML = document.getElementById("code").value;
@@ -462,8 +463,8 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			status = "1";
 			if(status === "1")
 			{
-				var cost = localStorage.getItem("cost");
-				if(typeof cost !== "number") cost = 10000;
+				var cost = parserInt(localStorage.getItem("cost"));
+				if(!isNaN(cost)) cost = 10000;
 				document.getElementById("cost").value = cost;
 				document.body.style.backgroundImage = "none";
 				document.getElementById("begin").style.display = "none";
@@ -570,12 +571,14 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function generate()
 		{
 			var cost = document.getElementById("cost").value;
+			var code = localStorage.getItem("code");
 			var name = localStorage.getItem("name");
 			var plate = localStorage.getItem("plate");
 			localStorage.setItem("cost", cost);
+			if(typeof code !== "string") code = "";
 			if(typeof name !== "string") name = "";
 			if(typeof plate !== "string") plate = "";
-			document.getElementById("code").value = "";
+			document.getElementById("code").value = code;
 			document.getElementById("name").value = name;
 			document.getElementById("plate").value = plate;
 			document.getElementById("distance").value = km / 1000;
@@ -588,6 +591,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
