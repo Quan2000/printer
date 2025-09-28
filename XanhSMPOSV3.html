@@ -538,12 +538,16 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			Math.sin(Δλ/2) * Math.sin(Δλ/2);
 			const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 			const d = Math.floor(R * c) / 1000;
+			alert(d.toString());
 			var v = parseFloat(document.getElementById("distance").innerHTML);
 			if(ismeasure == 2)
 			{
-				v = v + d;
-				lat1 = lat2;
-				lon1 = lon2;
+				if(d > 0)
+				{
+					v = v + d;
+					lat1 = lat2;
+					lon1 = lon2;
+				}
 			}
 			else if(ismeasure == 3) v = v + d;
 			document.getElementById("distance").innerHTML = v.toString();
@@ -568,6 +572,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
