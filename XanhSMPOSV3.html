@@ -148,7 +148,6 @@ km
 				<button id="start" class="button" onclick="start()">Bắt đầu</button>
 				<br>
 				<br>
-				<br>
 				<button id="exit" class="button2" onclick="exit()">Đóng</button>
 				<button id="generate" class="button" onclick="genẻrate()">In biên lai</button>
 			</div>
@@ -541,6 +540,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}
 			}
 			else if(ismeasure == 3) distance = distance + d;
+			document.getElementById("cost").value = d.toString();
 			document.getElementById("distance").innerHTML = distance.toString();
 		}
 		function showError(error)
@@ -558,6 +558,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
