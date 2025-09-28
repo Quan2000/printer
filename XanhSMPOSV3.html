@@ -135,6 +135,7 @@
 				<br>
 				<input type="text" class="text" id="cost" />
 				<label>/km</label>
+				<button id="start" onclick="start()" class="button1">Bắt đầu</button>
 			</div>
 			<div id="reader"></div>
 			<div id="result">
@@ -433,6 +434,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function measure()
 		{
+			document.body.style.backgroundImage = "none";
 			document.getElementById("begin").style.display = "none";
 			document.getElementById("location").style.display = "block";
 		}
@@ -443,6 +445,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
