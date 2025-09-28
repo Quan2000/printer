@@ -296,7 +296,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		var lon1;
 		var lat2;
 		var lon2;
-		var measure = 0;
+		var ismeasure = 0;
 		setInterval(update, 10000);
 		const scanner = new Html5QrcodeScanner("reader",
 		{
@@ -469,18 +469,18 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				if(document.getElementById("start").innerHTML == "Bắt đầu")
 				{
 					document.getElementById("start").innerHTML = "Kết thúc";
-					measure = 1;
+					ismeasure = 1;
 				}
 				else
 				{
 					document.getElementById("start").innerHTML = "Bắt đầu";
-					measure = 3;
+					ismeasure = 3;
 				}
 				navigator.geolocation.getCurrentPosition(showPosition, showError);
 			}
 			else
 			{
-				measure = 0;
+				ismeasure = 0;
 				alert("Chức năng định vị lỗi");
 			}
 		}
@@ -489,18 +489,18 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function showPosition(position)
 		{
-			if(measure == 1)
+			if(ismeasure == 1)
 			{
 				lat1 = position.coords.latitude;
 				lon1 = position.coords.longitude;
-				measure = 2;
+				ismeasure = 2;
 				alert("Start");
 			}
-			else if(measure == 3)
+			else if(ismeasure == 3)
 			{
 				lat2 = position.coords.latitude;
 				lon2 = position.coords.longitude;
-				measure = 0;
+				ismeasure = 0;
 				alert("End");
 				showDistance();
 			}
@@ -521,10 +521,13 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function showError(error)
 		{
+			ismeasure = 0;
+			document.getElementById("start").innerHTML = "Bắt đầu";
 			alert("Chức năng định vị lỗi");
 		}
 	</script>
 </html>
+
 
 
 
