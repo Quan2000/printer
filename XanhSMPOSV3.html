@@ -299,6 +299,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		var lat2;
 		var lon2;
 		var ismeasure = 0;
+		var distance = 0;
 		setInterval(update, 10000);
 		const scanner = new Html5QrcodeScanner("reader",
 		{
@@ -486,15 +487,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}
 				navigator.geolocation.getCurrentPosition(showPosition, showError);
 			}
-			else
-			{
-				ismeasure = 0;
-				document.getElementById("start").innerHTML = "Bắt đầu";
-				document.getElementById("reset").disabled = false;
-				document.getElementById("exit").disabled = false;
-				document.getElementById("generate").disabled = false;
-				alert("Chức năng định vị lỗi");
-			}
+			else alert("Chức năng định vị lỗi");
 		}
 		function update()
 		{
@@ -538,31 +531,25 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			Math.sin(Δλ/2) * Math.sin(Δλ/2);
 			const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 			const d = Math.floor(R * c) / 1000;
-			var v = parseFloat(document.getElementById("distance").innerHTML);
 			if(ismeasure == 2)
 			{
 				if(d > 0)
 				{
-					v = v + d;
+					distance = distance + d;
 					lat1 = lat2;
 					lon1 = lon2;
 				}
 			}
-			else if(ismeasure == 3) v = v + d;
-			document.getElementById("distance").innerHTML = v.toString();
+			else if(ismeasure == 3) distance = distance + d;
+			document.getElementById("distance").innerHTML = distance.toString();
 		}
 		function showError(error)
 		{
-			ismeasure = 0;
-			document.getElementById("start").innerHTML = "Bắt đầu";
-			document.getElementById("reset").disabled = false;
-			document.getElementById("exit").disabled = false;
-			document.getElementById("generate").disabled = false;
-			alert("Chức năng định vị lỗi");
 		}
 		function reset()
 		{
 			ismeasure = 0;
+			distance = 0;
 			document.getElementById("start").innerHTML = "Bắt đầu";
 			document.getElementById("reset").disabled = false;
 			document.getElementById("exit").disabled = false;
@@ -571,6 +558,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
