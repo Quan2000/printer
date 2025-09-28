@@ -498,7 +498,11 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function update()
 		{
-			alert("update");
+			if(ismeasure == 2)
+			{
+				if(navigator.geolocation) navigator.geolocation.getCurrentPosition(showPosition, showError);
+				else alert("Chức năng định vị lỗi");
+			}
 		}
 		function showPosition(position)
 		{
@@ -564,6 +568,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
