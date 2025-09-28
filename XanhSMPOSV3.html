@@ -140,7 +140,7 @@ km
 				<label class="label">Đơn giá</label>
 				<br>
 				<br>
-				<input type="text" class="text" id="cost" />
+				<input type="number" class="text" id="cost" />
 				<label>/km</label>
 				<br>
 				<br>
@@ -542,7 +542,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			}
 			else if(ismeasure == 3) km = km + d;
 			document.getElementById("cost").value = d.toString();
-			document.getElementById("km").innerHTML = km.toString();
+			document.getElementById("km").innerHTML = (km / 1000).toString();
 		}
 		function showError(error)
 		{
@@ -559,4 +559,5 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
