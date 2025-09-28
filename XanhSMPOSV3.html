@@ -537,9 +537,16 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			var v = parseFloat(document.getElementById("distance").innerHTML);
 			if(ismeasure == 2)
 			{
-				if(d > 0.05) v = v + d;
+				v = v + d;
+				lat1 = lat2;
+				lon1 = lon2;
 			}
-			else if(ismeasure == 3) v = v + d;
+			else if(ismeasure == 3)
+			{
+				v = v + d;
+				lat1 = lat2;
+				lon1 = lon2;
+			}
 			document.getElementById("distance").innerHTML = v.toString();
 		}
 		function showError(error)
@@ -562,6 +569,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
