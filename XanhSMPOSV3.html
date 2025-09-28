@@ -30,13 +30,6 @@
 			left: 55vw;
 			width: 35vw;
 		}
-		.button1
-		{
-			position: absolute;
-			top: 72vh;
-			left: 22vw;
-			z-index: 1;
-		}
 		.button2
 		{
 			position: absolute;
@@ -65,8 +58,8 @@
 		}
 		#reader
 		{
+			display: none;
 			width: 100vw;
-			z-index: 0;
 		}
 		#result
 		{
@@ -107,7 +100,12 @@
 		<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
 	<body data-rsssl=1>
 		<main>
-			<button class="button1" onclick="measure()">Hành trình</button>
+			
+			<div id="begin">
+				<button id="measure" onclick="measure()">Hành trình</button>
+				<br>
+				<button id="scan" onclick="scan()">Quét mã QR</button>
+			</div>
 			<div id="reader"></div>
 			<div id="result">
 				<label class="label">Mã chuyến đi</label>
@@ -405,10 +403,12 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function measure()
 		{
-			alert("Measure");
+			document.getElementById("reader").style.display = "none";
+			document.getElementById("measure").style.display = "none";
 		}
 	</script>
 </html>
+
 
 
 
