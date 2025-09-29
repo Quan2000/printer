@@ -455,28 +455,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					format: [56, 142],
 					orientation: "portrait"
 				}
-			}).output("arraybuffer").then(
-					async function(arraybuffer)
-					{
-						try
-						{
-							const port = await navigator.serial.requestPort
-							({
-								filters: [{ bluetoothServiceClassId: '00001101-0000-1000-8000-00805f9b34fb' }]
-							});
-							await port.open({ baudRate: 9600 });
-							const textEncoder = new TextEncoderStream();
-							const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
-							const writer = textEncoder.writable.getWriter();
-							await writer.write(arraybuffer);
-							alert("Print done")
-						}
-						catch(error)
-						{
-							alert("Print error");
-						}
-					}
-				);
+			}).save();
 		}
 		function measure()
 		{
@@ -612,6 +591,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
