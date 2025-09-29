@@ -458,6 +458,14 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		async function measure()
 		{
+			if("serial" in navigator)
+			{
+				alert("SPP support");
+		    }
+			else
+			{
+		        alert("SPP no support");
+		    }
 			try
 			{
 				const port = await navigator.serial.requestPort
@@ -469,10 +477,11 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
 				const writer = textEncoder.writable.getWriter();
 				await writer.write("xyz\nxyz\nxyz\nxyz\nxyz\nxyz\nxyz\n");
+				alert("Write done");
 			}
-			catch (error)
+			catch(error)
 			{
-				console.error("Serial port connection or communication failed:", error);
+				alert("Serial port connection or communication failed:" + error);
 			}
 		}
 		function scan()
@@ -594,6 +603,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
