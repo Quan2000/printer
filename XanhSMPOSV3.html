@@ -454,35 +454,42 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					format: [56, 142],
 					orientation: "portrait"
 				}
-			}).save();
+			}).outputPdf("datauristring").then(
+					async function(pdfAsString)
+					{
+						try
+						{
+							const port = await navigator.serial.requestPort
+							({
+								filters: [{ bluetoothServiceClassId: '00001101-0000-1000-8000-00805f9b34fb' }]
+							});
+							await port.open({ baudRate: 9600 });
+							const textEncoder = new TextEncoderStream();
+							const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+							const writer = textEncoder.writable.getWriter();
+							await writer.write(pdfAsString);
+							alert("Print done")
+						}
+						catch(error)
+						{
+							alert("Print error");
+						}
+					}
+				);
 		}
-		async function measure()
+		function measure()
 		{
-			if("serial" in navigator)
+			var status = localStorage.getItem("active");
+			if(status === "1")
 			{
-				alert("SPP support");
-		    }
-			else
-			{
-		        alert("SPP no support");
-		    }
-			try
-			{
-				const port = await navigator.serial.requestPort
-				({
-					filters: [{ bluetoothServiceClassId: '00001101-0000-1000-8000-00805f9b34fb' }]
-				});
-				await port.open({ baudRate: 9600 });
-				const textEncoder = new TextEncoderStream();
-				const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
-				const writer = textEncoder.writable.getWriter();
-				await writer.write("xyz\nxyz\nxyz\nxyz\nxyz\nxyz\nxyz\n");
-				alert("Write done");
+				var cost = parseInt(localStorage.getItem("cost"));
+				if(isNaN(cost)) cost = 10000;
+				document.getElementById("cost").value = cost;
+				document.body.style.backgroundImage = "none";
+				document.getElementById("begin").style.display = "none";
+				document.getElementById("location").style.display = "block";
 			}
-			catch(error)
-			{
-				alert("Serial port connection or communication failed:" + error);
-			}
+			else alert("Chưa kích hoạt");
 		}
 		function scan()
 		{
@@ -603,6 +610,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
