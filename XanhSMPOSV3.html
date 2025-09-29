@@ -456,19 +456,24 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}
 			}).save();
 		}
-		function measure()
+		async function measure()
 		{
-			var status = localStorage.getItem("active");
-			if(status === "1")
+			try
 			{
-				var cost = parseInt(localStorage.getItem("cost"));
-				if(isNaN(cost)) cost = 10000;
-				document.getElementById("cost").value = cost;
-				document.body.style.backgroundImage = "none";
-				document.getElementById("begin").style.display = "none";
-				document.getElementById("location").style.display = "block";
+				const port = await navigator.serial.requestPort
+				({
+					filters: [{ bluetoothServiceClassId: '00001101-0000-1000-8000-00805f9b34fb' }]
+				});
+				await port.open({ baudRate: 9600 });
+				const textEncoder = new TextEncoderStream();
+				const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+				const writer = textEncoder.writable.getWriter();
+				await writer.write("xyz\nxyz\nxyz\nxyz\nxyz\nxyz\nxyz\n");
 			}
-			else alert("Chưa kích hoạt");
+			catch (error)
+			{
+				console.error("Serial port connection or communication failed:", error);
+			}
 		}
 		function scan()
 		{
@@ -589,6 +594,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
