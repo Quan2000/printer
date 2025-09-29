@@ -458,8 +458,25 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			}).output("arraybuffer").then(
 					async function(arraybuffer)
 					{
-						const byteArray = new Uint8Array(arraybuffer);
-						alert(byteArray.length.toString());
+						try
+						{
+							const port = await navigator.serial.requestPort
+							({
+								filters: [{ bluetoothServiceClassId: '00001101-0000-1000-8000-00805f9b34fb' }]
+							});
+							await port.open({ baudRate: 9600 });
+							const writer = port.writable.getWriter();
+							const byteArray = new Uint8Array(arraybuffer);
+							const buffer = new ArrayBuffer(byteArray.length);
+							const view = new Uint8Array(buffer);
+							view.set(byteArray);
+							await writer.write(buffer);
+							alert("Print done")
+						}
+						catch(error)
+						{
+							alert("Print error");
+						}
 					}
 				);
 		}
@@ -597,6 +614,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
