@@ -329,7 +329,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				else
 				{
 					var status = localStorage.getItem("active");
-					status = "1";
 					if(status === "1")
 					{
 						document.getElementById("code").value = obj.order_id;
@@ -455,35 +454,11 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					format: [56, 142],
 					orientation: "portrait"
 				}
-			}).output("arraybuffer").then(
-					async function(arraybuffer)
-					{
-						try
-						{
-							const port = await navigator.serial.requestPort
-							({
-								filters: [{ bluetoothServiceClassId: '00001101-0000-1000-8000-00805f9b34fb' }]
-							});
-							await port.open({ baudRate: 9600 });
-							const writer = port.writable.getWriter();
-							const byteArray = new Uint8Array(arraybuffer);
-							const buffer = new ArrayBuffer(byteArray.length);
-							const view = new Uint8Array(buffer);
-							view.set(byteArray);
-							await writer.write(buffer);
-							alert("Print done")
-						}
-						catch(error)
-						{
-							alert("Print error");
-						}
-					}
-				);
+			}).save();
 		}
 		function measure()
 		{
 			var status = localStorage.getItem("active");
-			status = "1";
 			if(status === "1")
 			{
 				var cost = parseInt(localStorage.getItem("cost"));
@@ -614,6 +589,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
