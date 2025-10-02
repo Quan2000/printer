@@ -620,7 +620,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function showDistance()
 		{
-			const R = 7000000;
+			const R = 700000;
 			const φ1 = lat1 * Math.PI/180;
 			const φ2 = lat2 * Math.PI/180;
 			const Δφ = (lat2-lat1) * Math.PI/180;
@@ -641,10 +641,10 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			else if(ismeasure == 3) km = km + d;
 			document.getElementById("km").innerHTML = (km / 1000).toFixed(2);
 			document.getElementById("minute").innerHTML = (Math.floor(sec / 60)).toString();
-			if(km < 2000) vnd = parseInt(document.getElementById("fee0").value);
-			else if(km < 12000) vnd = parseInt(document.getElementById("fee0").value) + ((km - 2000) / 1000) * parseInt(document.getElementById("fee1").value);
-			else if(km < 25000) vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + ((km - 12000) / 1000) * parseInt(document.getElementById("fee2").value);
-			else vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + 13 * parseInt(document.getElementById("fee2").value) + ((km - 25000) / 1000) * parseInt(document.getElementById("fee2").value);
+			if(km < 200) vnd = parseInt(document.getElementById("fee0").value);
+			else if(km < 1200) vnd = parseInt(document.getElementById("fee0").value) + ((km - 200) / 100) * parseInt(document.getElementById("fee1").value);
+			else if(km < 2500) vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + ((km - 1200) / 100) * parseInt(document.getElementById("fee2").value);
+			else vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + 13 * parseInt(document.getElementById("fee2").value) + ((km - 2500) / 100) * parseInt(document.getElementById("fee2").value);
 			document.getElementById("money").innerHTML = vnd.toString();
 		}
 		function showError(error)
@@ -669,7 +669,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			document.getElementById("code").value = code;
 			document.getElementById("name").value = name;
 			document.getElementById("plate").value = plate;
-			document.getElementById("distance").value = Math.floor(km / 10) / 100;
+			document.getElementById("distance").value = km / 100;
 			document.getElementById("fee").value = vnd;
 			document.getElementById("addon").value = 0;
 			document.getElementById("surcharge").value = 0;
@@ -679,39 +679,3 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
