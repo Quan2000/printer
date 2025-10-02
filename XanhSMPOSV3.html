@@ -597,7 +597,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				else alert("Chức năng định vị lỗi");
 				sec = sec + 10;
 				document.getElementById("minute").innerHTML = (Math.floor(sec / 60)).toString();
-				alert("1");
+				console.log("1");
 			}
 		}
 		function showPosition(position)
@@ -613,14 +613,14 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				lat2 = position.coords.latitude;
 				lon2 = position.coords.longitude;
 				showDistance();
-				alert("2");
+				console.log("2");
 			}
 			else if(ismeasure == 3)
 			{
 				lat2 = position.coords.latitude;
 				lon2 = position.coords.longitude;
 				showDistance();
-				alert("3");
+				console.log("3");
 				ismeasure = 0;
 			}
 		}
@@ -686,6 +686,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
