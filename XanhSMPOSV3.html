@@ -135,6 +135,11 @@
 			width: 50vw;
 			height: 3vh;
 			text-align: center;
+			border: 1px solid;
+		}
+		.tr
+		{
+			border: 1px solid;
 		}
 		.input
 		{
@@ -182,32 +187,32 @@
 					<br>
 					<br>
 					<table class="table">
-						<tr>
+						<tr class="tr">
 							<td class="td3">Phí mở cửa (VNĐ)</td>
 							<td class="td3">
 								<input class="input" type="number" id="fee0" />
 							</td>
 						</tr>
-						<tr>
+						<tr class="tr">
 							<td class="td3" colspan="2">Phí quãng đường (VNĐ/km)</td>
 						</tr>
-						<tr>
+						<tr class="tr">
 							<td class="td3">Nhỏ hơn 2km</td>
 							<td class="td3">0</td>
 						</tr>
-						<tr>
+						<tr class="tr">
 							<td class="td3">Từ 2km đến 12km</td>
 							<td class="td3">
 								<input class="input" type="number" id="fee1" />
 							</td>
 						</tr>
-						<tr>
+						<tr class="tr">
 							<td class="td3">Từ 12km đến 25km</td>
 							<td class="td3">
 								<input class="input" type="number" id="fee2" />
 							</td>
 						</tr>
-						<tr>
+						<tr class="tr">
 							<td class="td3">Lớn hơn 25km</td>
 							<td class="td3">
 								<input class="input" type="number" id="fee3" />
@@ -669,6 +674,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
