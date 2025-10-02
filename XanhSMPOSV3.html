@@ -126,7 +126,7 @@
 		<main>
 			
 			<div id="begin">
-				<button id="measure" onclick="measure()" class="button1">Hành trình</button>
+				<button id="measure" onclick="measure()" class="button1">Cuốc vẫy</button>
 				<button id="scan" onclick="scan()" class="button3">Quét mã QR</button>
 			</div>
 			<div id="location">
@@ -551,7 +551,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}
 			}
 			else if(ismeasure == 3) km = km + d;
-			document.getElementById("km").innerHTML = (km / 1000).toString();
+			document.getElementById("km").innerHTML = (km / 910).toFixed(2);
 		}
 		function showError(error)
 		{
@@ -589,6 +589,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
