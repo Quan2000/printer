@@ -639,7 +639,8 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				sec = sec + 10;
 			}
 			else if(ismeasure == 3) km = km + d;
-			document.getElementById("km").innerHTML = (km / 1000).toFixed(2);
+			km = 10.8;
+			document.getElementById("km").innerHTML = (km / 100).toFixed(2);
 			document.getElementById("minute").innerHTML = (Math.floor(sec / 60)).toString();
 			if(km < 200) vnd = parseInt(document.getElementById("fee0").value);
 			else if(km < 1200) vnd = parseInt(document.getElementById("fee0").value) + ((km - 200) / 100) * parseInt(document.getElementById("fee1").value);
@@ -679,3 +680,4 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
