@@ -106,6 +106,10 @@
 			font-size: 11px;
 			font-family: Times New Roman, sans-serif;
 		}
+		.table
+		{
+			border: 1px;
+		}
 		.td
 		{
 			font-size: 11px;
@@ -130,7 +134,11 @@
 			width: 50vw;
 			height: 3vh;
 			text-align: center;
-			border: 2px solid black;
+			border: 1px;
+		}
+		.input
+		{
+			border-collapse: none;
 		}
 		#active
 		{
@@ -177,7 +185,7 @@
 						<tr>
 							<td class="td3">Phí mở cửa (VNĐ)</td>
 							<td class="td3">
-								<input type="number" id="fee0" />
+								<input class="input" type="number" id="fee0" />
 							</td>
 						</tr>
 						<tr>
@@ -190,19 +198,19 @@
 						<tr>
 							<td class="td3">Từ 2km đến 12km</td>
 							<td class="td3">
-								<input type="number" id="fee1" />
+								<input class="input" type="number" id="fee1" />
 							</td>
 						</tr>
 						<tr>
 							<td class="td3">Từ 12km đến 25km</td>
 							<td class="td3">
-								<input type="number" id="fee2" />
+								<input class="input" type="number" id="fee2" />
 							</td>
 						</tr>
 						<tr>
 							<td class="td3">Lớn hơn 25km</td>
 							<td class="td3">
-								<input type="number" id="fee3" />
+								<input class="input" type="number" id="fee3" />
 							</td>
 						</tr>
 					</table>
@@ -661,6 +669,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
