@@ -131,7 +131,7 @@
 			</div>
 			<div id="location">
 				<p>
-					<b id="km" class="text1">0</b>
+					<b id="km" class="text1">0.00</b>
 					<br>
 km
 				</p>
@@ -459,7 +459,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function measure()
 		{
 			var status = localStorage.getItem("active");
-			status = "1";
 			if(status === "1")
 			{
 				var cost = parseInt(localStorage.getItem("cost"));
@@ -588,6 +587,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
