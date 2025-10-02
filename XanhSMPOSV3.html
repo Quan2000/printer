@@ -55,17 +55,12 @@
 		{
 			display: inline-block;
 			width: 30vw;
-			height: 2vh;
+			height: 3vh;
 		}
 		.text
 		{
 			width: 70vw;
 			height: 4vh;
-		}
-		.text1
-		{
-			font-size: 10vh;
-			color: #009688;
 		}
 		main
 		{
@@ -111,9 +106,33 @@
 			font-size: 11px;
 			font-family: Times New Roman, sans-serif;
 		}
-		.column
+		.table
+		{
+			border: 2px solid black;
+		}
+		.td
 		{
 			font-size: 11px;
+		}
+		.td1
+		{
+			font-size: 2vh;
+			width: 100vw;
+			height: 3vh;
+			text-align: left;
+		}
+		.td2
+		{
+			font-size: 4vh;
+			width: 100vw;
+			height: 5vh;
+			text-align: right;
+		}
+		.td3
+		{
+			font-size: 2vh;
+			width: 50vw;
+			height: 3vh;
 		}
 		#active
 		{
@@ -130,27 +149,67 @@
 				<button id="scan" onclick="scan()" class="button3">Quét mã QR</button>
 			</div>
 			<div id="location">
-				<p>
-					<b id="km" class="text1">0.00</b>
+				<table>
+					<tr>
+						<td class="td1">Cước phí (VNĐ)</td>
+					</tr>
+					<tr>
+						<td class="td2" id="money">0</td>
+					</tr>
+					<tr>
+						<td class="td1">Khoảng cách (km)</td>
+					</tr>
+					<tr>
+						<td class="td2" id="km">0.00</td>
+					</tr>
+					<tr>
+						<td class="td1">Thời gian (phút)</td>
+					</tr>
+					<tr>
+						<td class="td2" id="minutes">0</td>
+					</tr>
+				</table>
+				<p id="cost">
+					<b>Bảng cước dịch vụ</b>b
 					<br>
-km
+					<br>
+					<table class="table">
+						<tr>
+							<td class="td3">Phí mở cửa (VNĐ)</td>
+						</tr>
+						<tr>
+							<td class="td3" id="fee0">
+								<input type="number" id="fee0" />
+							</td>
+						</tr>
+						<tr>
+							<td class="td3" colspan="2">Phí quãng đường (VNĐ/km)</td>
+						</tr>
+						<tr>
+							<td class="td3">Nhỏ hơn 2km</td>
+							<td class="td3">0</td>
+						</tr>
+						<tr>
+							<td class="td3">Từ 2km đến 12km</td>
+							<td class="td3">
+								<input type="number" id="fee1" />
+							</td>
+						</tr>
+						<tr>
+							<td class="td3">Từ 12km đến 25km</td>
+							<td class="td3">
+								<input type="number" id="fee2" />
+							</td>
+						</tr>
+						<tr>
+							<td class="td3">Lớn hơn 25km</td>
+							<td class="td3" id="fee3">
+								<input type="number" id="fee3" />
+							</td>
+						</tr>
+					</table>
 				</p>
-				<br>
-				<br>
-				<label class="label">Đơn giá</label>
-				<br>
-				<br>
-				<input type="number" class="text" id="cost" />
-				<label>đ/km</label>
-				<br>
-				<br>
-				<button id="reset" class="button2" onclick="reset()">Làm mới </button>
-				<button id="start" class="button" onclick="start()">Bắt đầu</button>
-				<br>
-				<br>
-				<br>
-				<button id="exit" class="button2" onclick="exit()">Đóng</button>
-				<button id="generate" class="button" onclick="generate()">In biên lai</button>
+				<button id="start" onclick="start()">Bắt đầu cuốc vẫy</button>
 			</div>
 			<div id="reader"></div>
 			<div id="result">
@@ -251,8 +310,8 @@ Hotline: 1900 2088 | Email: cskh@xanhsm
 							<td width=50px align="right" id="discount1"></td>
 						</tr>
 						<tr>
-							<td width=130px align="left" class="column"><b>Total/Tổng tiền</b></td>
-							<td width=50px align="right" class="column"><b id="total1"></b></td>
+							<td width=130px align="left" class="td"><b>Total/Tổng tiền</b></td>
+							<td width=50px align="right" class="td"><b id="total1"></b></td>
 						</tr>
 					</table>
 ................................................................................................
@@ -329,6 +388,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				else
 				{
 					var status = localStorage.getItem("active");
+					status = "1";
 					if(status === "1")
 					{
 						document.getElementById("code").value = obj.order_id;
@@ -459,11 +519,21 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function measure()
 		{
 			var status = localStorage.getItem("active");
+			status = "1";
 			if(status === "1")
 			{
-				var cost = parseInt(localStorage.getItem("cost"));
-				if(isNaN(cost)) cost = 10000;
-				document.getElementById("cost").value = cost;
+				var fee0 = parseInt(localStorage.getItem("fee0"));
+				var fee1 = parseInt(localStorage.getItem("fee1"));
+				var fee2 = parseInt(localStorage.getItem("fee2"));
+				var fee3 = parseInt(localStorage.getItem("fee3"));
+				if(isNaN(fee0)) fee0 = 30500;
+				if(isNaN(fee1)) fee1 = 14700;
+				if(isNaN(fee2)) fee2 = 13800;
+				if(isNaN(fee3)) fee3 = 11900;
+				document.getElementById("fee0").value = fee0;
+				document.getElementById("fee1").value = fee1;
+				document.getElementById("fee2").value = fee2;
+				document.getElementById("fee3").value = fee3;
 				document.body.style.backgroundImage = "none";
 				document.getElementById("begin").style.display = "none";
 				document.getElementById("location").style.display = "block";
@@ -566,11 +636,17 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function generate()
 		{
-			var cost = document.getElementById("cost").value;
+			var fee0 = document.getElementById("fee0").value;
+			var fee1 = document.getElementById("fee1").value;
+			var fee2 = document.getElementById("fee2").value;
+			var fee3 = document.getElementById("fee3").value;
 			var code = localStorage.getItem("code");
 			var name = localStorage.getItem("name");
 			var plate = localStorage.getItem("plate");
-			localStorage.setItem("cost", cost);
+			localStorage.setItem("fee0", fee0);
+			localStorage.setItem("fee1", fee1);
+			localStorage.setItem("fee2", fee2);
+			localStorage.setItem("fee3", fee3);
 			if(typeof code !== "string") code = "";
 			if(typeof name !== "string") name = "";
 			if(typeof plate !== "string") plate = "";
@@ -587,6 +663,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
