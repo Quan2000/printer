@@ -595,6 +595,9 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			{
 				if(navigator.geolocation) navigator.geolocation.getCurrentPosition(showPosition, showError);
 				else alert("Chức năng định vị lỗi");
+				sec = sec + 10;
+				document.getElementById("minute").innerHTML = (Math.floor(sec / 60)).toString();
+				alert("1");
 			}
 		}
 		function showPosition(position)
@@ -683,6 +686,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
