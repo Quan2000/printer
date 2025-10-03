@@ -370,7 +370,8 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		var ismeasure = 0;
 		var km = 0;
 		var vnd = 0;
-		var sec = 0;
+		var hour0 = 0;
+		var minute0 = 0;
 		setInterval(update, 10000);
 		const scanner = new Html5QrcodeScanner("reader",
 		{
@@ -569,13 +570,20 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					document.getElementById("minute").innerHTML = "0";
 					km = 0;
 					vnd = parseInt(document.getElementById("fee0").value);
-					sec = 0;
-					document.getElementById("money").innerHTML = vnd.toString();
+					var date = new Date();
+					hour0 = date.getHours(); 
+					minute0 = date.getMinutes();
+					document.getElementById("money").innerHTML = (vnd / 1000).toFix(3);
 					ismeasure = 1;
 					navigator.geolocation.getCurrentPosition(showPosition, showError);
 				}
 				else if(document.getElementById("start").innerHTML == "Hoàn thành cuốc vẫy")
 				{
+					var date = new Date();
+					var hour1 = date.getHours();
+					var minute1 = date.getMinutes();
+					if(hour1 < hour0) hour1 = hour1 + 24;
+					document.getElementById("minute").innerHTML = ((60 * hour1 + minute1) - (60 * hour0 + minute0)).toString();
 					document.getElementById("start").innerHTML = "Đang xử lí...";
 					ismeasure = 3;
 					navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -590,8 +598,11 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			{
 				if(navigator.geolocation) navigator.geolocation.getCurrentPosition(showPosition, showError);
 				else alert("Chức năng định vị lỗi");
-				sec = sec + 10;
-				document.getElementById("minute").innerHTML = (Math.floor(sec / 60)).toString();
+				var date = new Date();
+				var hour1 = date.getHours();
+				var minute1 = date.getMinutes();
+				if(hour1 < hour0) hour1 = hour1 + 24;
+				document.getElementById("minute").innerHTML = ((60 * hour1 + minute1) - (60 * hour0 + minute0)).toString();
 			}
 		}
 		function showPosition(position)
@@ -676,6 +687,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
