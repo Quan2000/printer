@@ -573,7 +573,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					var date = new Date();
 					hour0 = date.getHours(); 
 					minute0 = date.getMinutes();
-					document.getElementById("money").innerHTML = (vnd / 1000).toFix(3);
+					document.getElementById("money").innerHTML = (vnd / 1000).toFixed(3);
 					ismeasure = 1;
 					navigator.geolocation.getCurrentPosition(showPosition, showError);
 				}
@@ -687,6 +687,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
