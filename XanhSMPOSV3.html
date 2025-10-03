@@ -406,7 +406,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				else
 				{
 					var status = localStorage.getItem("active");
-					status = "1";
 					if(status === "1")
 					{
 						document.getElementById("code").value = obj.order_id;
@@ -537,7 +536,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function measure()
 		{
 			var status = localStorage.getItem("active");
-			status = "1";
 			if(status === "1")
 			{
 				var fee0 = parseInt(localStorage.getItem("fee0"));
@@ -643,7 +641,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}
 			}
 			else if(ismeasure == 3) km = km + d;
-			km = 3460;
 			document.getElementById("km").innerHTML = (km / 100).toFixed(2);
 			if(km < 200) vnd = parseInt(document.getElementById("fee0").value);
 			else if(km < 1200) vnd = parseInt(document.getElementById("fee0").value) + ((km - 200) / 100) * parseInt(document.getElementById("fee1").value);
@@ -683,6 +680,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
