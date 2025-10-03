@@ -578,14 +578,15 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					sec = 0;
 					document.getElementById("money").innerHTML = vnd.toString();
 					ismeasure = 1;
+					navigator.geolocation.getCurrentPosition(showPosition, showError);
 				}
 				else if(document.getElementById("start").innerHTML == "Hoàn thành cuốc vẫy")
 				{
-					document.getElementById("start").innerHTML = "In biên lai";
+					document.getElementById("start").innerHTML = "Đang xử lí...";
 					ismeasure = 3;
+					navigator.geolocation.getCurrentPosition(showPosition, showError);
 				}
 				else if(document.getElementById("start").innerHTML == "In biên lai") generate();
-				navigator.geolocation.getCurrentPosition(showPosition, showError);
 			}
 			else alert("Chức năng định vị lỗi");
 		}
@@ -619,6 +620,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				lon2 = position.coords.longitude;
 				showDistance();
 				ismeasure = 0;
+				document.getElementById("start").innerHTML = "In biên lai";
 			}
 		}
 		function showDistance()
@@ -681,6 +683,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
