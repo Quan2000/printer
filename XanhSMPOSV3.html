@@ -597,7 +597,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				else alert("Chức năng định vị lỗi");
 				sec = sec + 10;
 				document.getElementById("minute").innerHTML = (Math.floor(sec / 60)).toString();
-				console.log(1);
+				alert("1");
 			}
 		}
 		function showPosition(position)
@@ -613,14 +613,12 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				lat2 = position.coords.latitude;
 				lon2 = position.coords.longitude;
 				showDistance();
-				console.log(2);
 			}
 			else if(ismeasure == 3)
 			{
 				lat2 = position.coords.latitude;
 				lon2 = position.coords.longitude;
 				showDistance();
-				console.log(3);
 				ismeasure = 0;
 			}
 		}
@@ -642,12 +640,10 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					lat1 = lat2;
 					lon1 = lon2;
 				}
-				sec = sec + 10;
 			}
 			else if(ismeasure == 3) km = km + d;
 			km = 3460;
 			document.getElementById("km").innerHTML = (km / 100).toFixed(2);
-			document.getElementById("minute").innerHTML = (Math.floor(sec / 60)).toString();
 			if(km < 200) vnd = parseInt(document.getElementById("fee0").value);
 			else if(km < 1200) vnd = parseInt(document.getElementById("fee0").value) + ((km - 200) / 100) * parseInt(document.getElementById("fee1").value);
 			else if(km < 2500) vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + ((km - 1200) / 100) * parseInt(document.getElementById("fee2").value);
@@ -686,6 +682,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
