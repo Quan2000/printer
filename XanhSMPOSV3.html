@@ -305,7 +305,7 @@ Hotline: 1900 2088 | Email: cskh@xanhsm
 						</tr>
 						<tr>
 							<td width=130px align="left">Fee/Phí</td>
-							<td width=50px align="right" id="fee1"></td>
+							<td width=50px align="right" id="fee4"></td>
 						</tr>
 						<tr>
 							<td width=130px align="left">Addon fee/Dịch vụ thêm</td>
@@ -478,7 +478,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
 			else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
 			else newmoney = money;
-			document.getElementById("fee1").innerHTML = newmoney;
+			document.getElementById("fee4").innerHTML = newmoney;
 			money = discount.toString() + "đ";
 			if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
 			else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
@@ -676,6 +676,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
