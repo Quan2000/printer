@@ -265,10 +265,10 @@ NO REFUND/KHÔNG HOÀN TIỀN
 						document.getElementById("name").value = obj.driver_name;
 						document.getElementById("plate").value = obj.vehicle_license_plate;
 						document.getElementById("distance").value = obj.distance_display.slice(0, -2);
-						document.getElementById("fee").value = 1000 * parseInt(obj.base_fee_display.slice(0, -1));
-						document.getElementById("addon").value = 1000 * parseInt(obj.addons_fee_display.slice(0, -1));
-						document.getElementById("surcharge").value = 1000 * parseInt(obj.surcharge_fee_display.slice(0, -1));
-						document.getElementById("discount").value = 1000 * parseInt(obj.discount_display.slice(0, -1));
+						document.getElementById("fee").value = parseInt(obj.base_fee_display.slice(0, -1).replaceAll(".",""));
+						document.getElementById("addon").value = parseInt(obj.addons_fee_display.slice(0, -1).replaceAll(".",""));
+						document.getElementById("surcharge").value = parseInt(obj.surcharge_fee_display.slice(0, -1).replaceAll(".",""));
+						document.getElementById("discount").value = parseInt(obj.discount_display.slice(0, -1).replaceAll(".",""));
 						document.getElementById("reader").style.display = "none";
 						document.getElementById("bill").style.display = "none";
 						document.getElementById("print").style.display = "none";
@@ -387,6 +387,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 	</script>
 
 </html>
+
 
 
 
