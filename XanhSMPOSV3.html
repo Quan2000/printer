@@ -642,7 +642,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			else if(km < 1200) vnd = parseInt(document.getElementById("fee0").value) + ((km - 200) / 100) * parseInt(document.getElementById("fee1").value);
 			else if(km < 2500) vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + ((km - 1200) / 100) * parseInt(document.getElementById("fee2").value);
 			else vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + 13 * parseInt(document.getElementById("fee2").value) + ((km - 2500) / 100) * parseInt(document.getElementById("fee3").value);
-			document.getElementById("money").innerHTML = vnd.toString();
+			document.getElementById("money").innerHTML = (vnd / 1000).toFixed(3);
 		}
 		function showError(error)
 		{
@@ -676,6 +676,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
