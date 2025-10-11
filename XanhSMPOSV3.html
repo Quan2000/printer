@@ -172,11 +172,9 @@
 					</tr>
 					<tr>
 						<td class="td1">Khoảng cách (km)</td>
-						<td class="td2" id="km">0.00</td>
-					</tr>
-					<tr>
-						<td class="td1">Thời gian (phút)</td>
-						<td class="td2" id="minute">0</td>
+						<td class="td2">
+							<input class="input" type="number" id="km" onchange="update"/>
+						</td>
 					</tr>
 				</table>
 				<br>
@@ -219,7 +217,7 @@
 						</tr>
 					</table>
 				</p>
-				<button id="start" onclick="start()" class="button4">Bắt đầu cuốc vẫy</button>
+				<button onclick="generate()" class="button4">In hóa đơn</button>
 			</div>
 			<div id="reader"></div>
 			<div id="result">
@@ -363,16 +361,8 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</main>
 	</body>
 	<script>
-		var lat1;
-		var lon1;
-		var lat2;
-		var lon2;
-		var ismeasure = 0;
 		var km = 0;
 		var vnd = 0;
-		var hour0 = 0;
-		var minute0 = 0;
-		setInterval(update, 10000);
 		const scanner = new Html5QrcodeScanner("reader",
 		{
 			qrbox:
@@ -535,19 +525,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			status = "1";
 			if(status === "1")
 			{
-				var fee0 = parseInt(localStorage.getItem("fee0"));
-				var fee1 = parseInt(localStorage.getItem("fee1"));
-				var fee2 = parseInt(localStorage.getItem("fee2"));
-				var fee3 = parseInt(localStorage.getItem("fee3"));
-				if(isNaN(fee0)) fee0 = 30500;
-				if(isNaN(fee1)) fee1 = 14700;
-				if(isNaN(fee2)) fee2 = 13800;
-				if(isNaN(fee3)) fee3 = 11900;
-				document.getElementById("fee0").value = fee0;
-				document.getElementById("fee1").value = fee1;
-				document.getElementById("fee2").value = fee2;
-				document.getElementById("fee3").value = fee3;
-				document.body.style.backgroundImage = "none";
+				document.getElementById("km").value = 0;
 				document.getElementById("begin").style.display = "none";
 				document.getElementById("location").style.display = "block";
 			}
@@ -558,105 +536,14 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			document.getElementById("begin").style.display = "none";
 			document.getElementById("reader").style.display = "block";
 		}
-		function start()
-		{
-			if(navigator.geolocation)
-			{
-				if(document.getElementById("start").innerHTML == "Bắt đầu cuốc vẫy")
-				{
-					document.getElementById("start").innerHTML = "Hoàn thành cuốc vẫy";
-					document.getElementById("cost").style.display = "none";
-					document.getElementById("km").innerHTML = "0.00";
-					document.getElementById("minute").innerHTML = "0";
-					km = 0;
-					vnd = parseInt(document.getElementById("fee0").value);
-					var date = new Date();
-					hour0 = date.getHours(); 
-					minute0 = date.getMinutes();
-					document.getElementById("money").innerHTML = (vnd / 1000).toFixed(3);
-					ismeasure = 1;
-					navigator.geolocation.getCurrentPosition(showPosition, showError);
-				}
-				else if(document.getElementById("start").innerHTML == "Hoàn thành cuốc vẫy")
-				{
-					var date = new Date();
-					var hour1 = date.getHours();
-					var minute1 = date.getMinutes();
-					if(hour1 < hour0) hour1 = hour1 + 24;
-					document.getElementById("minute").innerHTML = ((60 * hour1 + minute1) - (60 * hour0 + minute0)).toString();
-					document.getElementById("start").innerHTML = "Đang xử lí...";
-					ismeasure = 3;
-					navigator.geolocation.getCurrentPosition(showPosition, showError);
-				}
-				else if(document.getElementById("start").innerHTML == "In biên lai") generate();
-			}
-			else alert("Chức năng định vị lỗi");
-		}
 		function update()
 		{
-			if(ismeasure == 2)
-			{
-				if(navigator.geolocation) navigator.geolocation.getCurrentPosition(showPosition, showError);
-				else alert("Chức năng định vị lỗi");
-				var date = new Date();
-				var hour1 = date.getHours();
-				var minute1 = date.getMinutes();
-				if(hour1 < hour0) hour1 = hour1 + 24;
-				document.getElementById("minute").innerHTML = ((60 * hour1 + minute1) - (60 * hour0 + minute0)).toString();
-			}
-		}
-		function showPosition(position)
-		{
-			if(ismeasure == 1)
-			{
-				lat1 = position.coords.latitude;
-				lon1 = position.coords.longitude;
-				ismeasure = 2;
-			}
-			else if(ismeasure == 2)
-			{
-				lat2 = position.coords.latitude;
-				lon2 = position.coords.longitude;
-				showDistance();
-			}
-			else if(ismeasure == 3)
-			{
-				lat2 = position.coords.latitude;
-				lon2 = position.coords.longitude;
-				showDistance();
-				ismeasure = 0;
-				document.getElementById("start").innerHTML = "In biên lai";
-			}
-		}
-		function showDistance()
-		{
-			const R = 690000;
-			const φ1 = lat1 * Math.PI/180;
-			const φ2 = lat2 * Math.PI/180;
-			const Δφ = (lat2-lat1) * Math.PI/180;
-			const Δλ = (lon2-lon1) * Math.PI/180;
-			const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ/2) * Math.sin(Δλ/2);
-			const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-			const d = Math.floor(R * c);
-			if(ismeasure == 2)
-			{
-				if(d > 5)
-				{
-					km = km + d;
-					lat1 = lat2;
-					lon1 = lon2;
-				}
-			}
-			else if(ismeasure == 3) km = km + d;
-			document.getElementById("km").innerHTML = (km / 100).toFixed(2);
+			km = parseInt(100 * document.getElementById("km").value);
 			if(km < 200) vnd = parseInt(document.getElementById("fee0").value);
 			else if(km < 1200) vnd = parseInt(document.getElementById("fee0").value) + ((km - 200) / 100) * parseInt(document.getElementById("fee1").value);
 			else if(km < 2500) vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + ((km - 1200) / 100) * parseInt(document.getElementById("fee2").value);
 			else vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + 13 * parseInt(document.getElementById("fee2").value) + ((km - 2500) / 100) * parseInt(document.getElementById("fee3").value);
 			document.getElementById("money").innerHTML = vnd.toLocaleString();
-		}
-		function showError(error)
-		{
 		}
 		function generate()
 		{
@@ -677,7 +564,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			document.getElementById("code").value = code;
 			document.getElementById("name").value = name;
 			document.getElementById("plate").value = plate;
-			document.getElementById("distance").value = km / 100;
+			document.getElementById("distance").value = km;
 			document.getElementById("fee").value = vnd;
 			document.getElementById("addon").value = 0;
 			document.getElementById("surcharge").value = 0;
@@ -687,6 +574,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
