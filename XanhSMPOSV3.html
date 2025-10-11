@@ -150,6 +150,11 @@
 			border: 0px solid;
 			text-align: center;
 		}
+		.input1
+		{
+			border: 0px solid;
+			text-align: right;
+		}
 		#active
 		{
 			display: none;
@@ -525,7 +530,22 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			status = "1";
 			if(status === "1")
 			{
+				var fee0 = parseInt(localStorage.getItem("fee0"));
+				var fee1 = parseInt(localStorage.getItem("fee1"));
+				var fee2 = parseInt(localStorage.getItem("fee2"));
+				var fee3 = parseInt(localStorage.getItem("fee3"));
+				if(isNaN(fee0)) fee0 = 30500;
+				if(isNaN(fee1)) fee1 = 14700;
+				if(isNaN(fee2)) fee2 = 13800;
+				if(isNaN(fee3)) fee3 = 11900;
+				document.getElementById("fee0").value = fee0;
+				document.getElementById("fee1").value = fee1;
+				document.getElementById("fee2").value = fee2;
+				document.getElementById("fee3").value = fee3;
 				document.getElementById("km").value = 0;
+				document.getElementById("money").innerHTML = 0;
+				km = 0;
+				vnd = 0;
 				document.body.style.backgroundImage = "none";
 				document.getElementById("begin").style.display = "none";
 				document.getElementById("location").style.display = "block";
@@ -575,6 +595,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
