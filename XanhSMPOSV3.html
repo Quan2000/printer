@@ -158,6 +158,7 @@
 			height: 4vh;
 			text-align: center;
 			font-family: Times New Roman, sans-serif;
+			background: #009688;
 		}
 		#active
 		{
@@ -168,7 +169,6 @@
 		<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
 	<body data-rsssl=1>
 		<main>
-			
 			<div id="begin">
 				<button id="measure" onclick="measure()" class="button1">Cuốc vẫy</button>
 				<button id="scan" onclick="scan()" class="button3">Quét mã QR</button>
@@ -176,9 +176,9 @@
 			<div id="location">
 				<table>
 					<tr>
-						<td class="td1">Khoảng cách (km)</td>
+						<td class="td1">Nhập khoảng cách để tạo biên lai (km)</td>
 						<td class="td2">
-							<input class="input1" type="number" id="km" onchange="update()"/>
+							<input class="input1" type="number" id="km" onchange="update()" />
 						</td>
 					</tr>
 					<tr>
@@ -544,7 +544,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				document.getElementById("fee1").value = fee1;
 				document.getElementById("fee2").value = fee2;
 				document.getElementById("fee3").value = fee3;
-				document.getElementById("km").value = 0;
+				document.getElementById("km").value = null;
 				document.getElementById("money").innerHTML = 0;
 				km = 0;
 				vnd = 0;
@@ -597,6 +597,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
+
 
 
 
