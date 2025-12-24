@@ -540,7 +540,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function measure()
 		{
 			var status = localStorage.getItem("active");
-			status = "1";
 			if(status === "1")
 			{
 				var fee0 = parseInt(localStorage.getItem("fee0"));
@@ -604,7 +603,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			document.getElementById("addon").value = 0;
 			document.getElementById("surcharge").value = 0;
 			document.getElementById("discount").value = 0;
-
 			document.getElementById("code").readOnly = false;
 			document.getElementById("name").readOnly = false;
 			document.getElementById("plate").readOnly = false;
@@ -613,12 +611,12 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			document.getElementById("addon").readOnly = false;
 			document.getElementById("surcharge").readOnly = false;
 			document.getElementById("discount").readOnly = false;
-			
 			document.getElementById("location").style.display = "none";
 			document.getElementById("result").style.display = "block";
 		}
 	</script>
 </html>
+
 
 
 
