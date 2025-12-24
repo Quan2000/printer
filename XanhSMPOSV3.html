@@ -402,7 +402,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				else
 				{
 					var status = localStorage.getItem("active");
-					status = "1";
 					if(status === "1")
 					{
 						document.getElementById("code").value = obj.order_id;
@@ -413,7 +412,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 						document.getElementById("addon").value = parseInt(obj.addons_fee_display.slice(0, -1).replaceAll(".",""));
 						document.getElementById("surcharge").value = parseInt(obj.surcharge_fee_display.slice(0, -1).replaceAll(".",""));
 						document.getElementById("discount").value = parseInt(obj.discount_display.slice(0, -1).replaceAll(".",""));
-						
 						document.getElementById("code").readOnly = true;
 						document.getElementById("name").readOnly = true;
 						document.getElementById("plate").readOnly = true;
@@ -422,7 +420,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 						document.getElementById("addon").readOnly = true;
 						document.getElementById("surcharge").readOnly = true;
 						document.getElementById("discount").readOnly = true;
-						
 						document.getElementById("reader").style.display = "none";
 						document.getElementById("bill").style.display = "none";
 						document.getElementById("print").style.display = "none";
@@ -543,6 +540,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function measure()
 		{
 			var status = localStorage.getItem("active");
+			status = "1";
 			if(status === "1")
 			{
 				var fee0 = parseInt(localStorage.getItem("fee0"));
@@ -605,11 +603,22 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			document.getElementById("addon").value = 0;
 			document.getElementById("surcharge").value = 0;
 			document.getElementById("discount").value = 0;
+
+			document.getElementById("code").readOnly = false;
+			document.getElementById("name").readOnly = false;
+			document.getElementById("plate").readOnly = false;
+			document.getElementById("distance").readOnly = false;
+			document.getElementById("fee").readOnly = false;
+			document.getElementById("addon").readOnly = false;
+			document.getElementById("surcharge").readOnly = false;
+			document.getElementById("discount").readOnly = false;
+			
 			document.getElementById("location").style.display = "none";
 			document.getElementById("result").style.display = "block";
 		}
 	</script>
 </html>
+
 
 
 
