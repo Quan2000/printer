@@ -30,6 +30,17 @@
 			left: 55vw;
 			width: 35vw;
 		}
+		.button1
+		{
+			position: absolute;
+			height: 4vh;
+			left: 20vw;
+			top: 82vh;
+			font-size: 2vh;
+			background: white;
+			color: black;
+			text-decoration: underline;
+		}
 		.button2
 		{
 			position: absolute;
@@ -39,11 +50,21 @@
 			background-color: white;
 			border: 1px solid black;
 		}
+		.button3
+		{
+			position: absolute;
+			left: 20vw;
+			top: 75vh;
+		}
+		.button4
+		{
+			width: 80vw;
+		}
 		.label
 		{
 			display: inline-block;
 			width: 30vw;
-			height: 2vh;
+			height: 3vh;
 		}
 		.text
 		{
@@ -58,7 +79,15 @@
 		}
 		#reader
 		{
+			display: none;
 			width: 100vw;
+		}
+		#location
+		{
+			display: none;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
 		}
 		#result
 		{
@@ -86,9 +115,54 @@
 			font-size: 10px;
 			font-family: Times New Roman, sans-serif;
 		}
-		.column
+		.table
+		{
+			border-collapse: collapse;
+			border: 1px solid;
+		}
+		.td
 		{
 			font-size: 11px;
+		}
+		.td1
+		{
+			font-size: 3vh;
+			width: 60vw;
+			height: 4vh;
+			text-align: left;
+		}
+		.td2
+		{
+			font-size: 3vh;
+			width: 30vw;
+			height: 5vh;
+			text-align: center;
+		}
+		.td3
+		{
+			font-size: 2vh;
+			width: 50vw;
+			height: 3vh;
+			text-align: center;
+			border: 1px solid;
+		}
+		.tr
+		{
+			border: 1px solid;
+		}
+		.input
+		{
+			border: 0px solid;
+			text-align: center;
+		}
+		.input1
+		{
+			border: 2px solid #009688;
+			width: 20vw;
+			font-size: 3vh;
+			height: 4vh;
+			text-align: center;
+			font-family: Times New Roman, sans-serif;
 		}
 		#active
 		{
@@ -99,6 +173,68 @@
 		<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
 	<body data-rsssl=1>
 		<main>
+			<div id="begin">
+				<button id="scan" onclick="scan()" class="button3">Quét mã QR</button>
+				<button id="measure" onclick="measure()" class="button1">Tạo cuốc</button>
+			</div>
+			<div id="location">
+				<b>Nhập quãng đường để tạo biên lai</b>
+				<br>
+				<br>
+				<table>
+					<tr>
+						<td class="td1">Quãng đường (km)</td>
+						<td class="td2">
+							<input class="input1" type="number" id="km" onchange="update()" />
+						</td>
+					</tr>
+					<tr>
+						<td class="td1">Cước phí (VNĐ)</td>
+						<td class="td2" id="money">0</td>
+					</tr>
+				</table>
+				<br>
+				<br>
+				<p id="cost">
+					<b>Bảng cước dịch vụ</b>
+					<br>
+					<br>
+					<table class="table">
+						<tr class="tr">
+							<td class="td3">Phí mở cửa (VNĐ)</td>
+							<td class="td3">
+								<input class="input" type="number" id="fee0" />
+							</td>
+						</tr>
+						<tr class="tr">
+							<td class="td3" colspan="2">Phí quãng đường (VNĐ/km)</td>
+						</tr>
+						<tr class="tr">
+							<td class="td3">Nhỏ hơn 2km</td>
+							<td class="td3">0</td>
+						</tr>
+						<tr class="tr">
+							<td class="td3">Từ 2km đến 12km</td>
+							<td class="td3">
+								<input class="input" type="number" id="fee1" />
+							</td>
+						</tr>
+						<tr class="tr">
+							<td class="td3">Từ 12km đến 25km</td>
+							<td class="td3">
+								<input class="input" type="number" id="fee2" />
+							</td>
+						</tr>
+						<tr class="tr">
+							<td class="td3">Lớn hơn 25km</td>
+							<td class="td3">
+								<input class="input" type="number" id="fee3" />
+							</td>
+						</tr>
+					</table>
+				</p>
+				<button onclick="generate()" class="button4">In hóa đơn</button>
+			</div>
 			<div id="reader"></div>
 			<div id="result">
 				<label class="label">Mã chuyến đi</label>
@@ -144,7 +280,7 @@
 					<br>
 					<b>XANH VÀ THÔNG MINH GSM</b>
 					<br>
-Hotline: 1900 2088 | Email: cskh@xanhsm
+Hotline: 021 988 888 | Email: cskh@xanhsm
 					<br>
 .com
 					<br>
@@ -183,7 +319,7 @@ Hotline: 1900 2088 | Email: cskh@xanhsm
 						</tr>
 						<tr>
 							<td width=130px align="left">Fee/Phí</td>
-							<td width=50px align="right" id="fee1"></td>
+							<td width=50px align="right" id="fee4"></td>
 						</tr>
 						<tr>
 							<td width=130px align="left">Addon fee/Dịch vụ thêm</td>
@@ -198,8 +334,8 @@ Hotline: 1900 2088 | Email: cskh@xanhsm
 							<td width=50px align="right" id="discount1"></td>
 						</tr>
 						<tr>
-							<td width=130px align="left" class="column"><b>Total/Tổng tiền</b></td>
-							<td width=50px align="right" class="column"><b id="total1"></b></td>
+							<td width=130px align="left" class="td"><b>Total/Tổng tiền</b></td>
+							<td width=50px align="right" class="td"><b id="total1"></b></td>
 						</tr>
 					</table>
 ................................................................................................
@@ -241,6 +377,8 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		</main>
 	</body>
 	<script>
+		var km = 0;
+		var vnd = 0;
 		const scanner = new Html5QrcodeScanner("reader",
 		{
 			qrbox:
@@ -279,6 +417,14 @@ NO REFUND/KHÔNG HOÀN TIỀN
 						document.getElementById("addon").value = parseInt(obj.addons_fee_display.slice(0, -1).replaceAll(".",""));
 						document.getElementById("surcharge").value = parseInt(obj.surcharge_fee_display.slice(0, -1).replaceAll(".",""));
 						document.getElementById("discount").value = parseInt(obj.discount_display.slice(0, -1).replaceAll(".",""));
+						document.getElementById("code").readOnly = true;
+						document.getElementById("name").readOnly = true;
+						document.getElementById("plate").readOnly = true;
+						document.getElementById("distance").readOnly = true;
+						document.getElementById("fee").readOnly = true;
+						document.getElementById("addon").readOnly = true;
+						document.getElementById("surcharge").readOnly = true;
+						document.getElementById("discount").readOnly = true;
 						document.getElementById("reader").style.display = "none";
 						document.getElementById("bill").style.display = "none";
 						document.getElementById("print").style.display = "none";
@@ -334,6 +480,9 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			else if(document.getElementById("distance").value < 0) distance = 0;
 			else distance = document.getElementById("distance").value;
 			var total = parseInt(fee) + parseInt(addon) + parseInt(surcharge) + parseInt(discount);
+			localStorage.setItem("code", document.getElementById("code").value);
+			localStorage.setItem("name", document.getElementById("name").value);
+			localStorage.setItem("plate", document.getElementById("plate").value);
 			document.getElementById("code1").innerHTML = document.getElementById("code").value;
 			document.getElementById("name1").innerHTML = document.getElementById("name").value;
 			document.getElementById("plate1").innerHTML = document.getElementById("plate").value;
@@ -343,7 +492,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
 			else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
 			else newmoney = money;
-			document.getElementById("fee1").innerHTML = newmoney;
+			document.getElementById("fee4").innerHTML = newmoney;
 			money = discount.toString() + "đ";
 			if(money.length > 7) newmoney = money.slice(0, -7) + "." + money.slice(-7,-4) + "." + money.slice(-4);
 			else if(money.length > 4) newmoney = money.slice(0, -4) + "." + money.slice(-4);
@@ -393,9 +542,86 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}
 			}).save();
 		}
+		function measure()
+		{
+			var status = localStorage.getItem("active");
+			if(status === "1")
+			{
+				var fee0 = parseInt(localStorage.getItem("fee0"));
+				var fee1 = parseInt(localStorage.getItem("fee1"));
+				var fee2 = parseInt(localStorage.getItem("fee2"));
+				var fee3 = parseInt(localStorage.getItem("fee3"));
+				if(isNaN(fee0)) fee0 = 30500;
+				if(isNaN(fee1)) fee1 = 14700;
+				if(isNaN(fee2)) fee2 = 13800;
+				if(isNaN(fee3)) fee3 = 11900;
+				document.getElementById("fee0").value = fee0;
+				document.getElementById("fee1").value = fee1;
+				document.getElementById("fee2").value = fee2;
+				document.getElementById("fee3").value = fee3;
+				document.getElementById("km").value = null;
+				document.getElementById("money").innerHTML = 0;
+				km = 0;
+				vnd = 0;
+				document.body.style.backgroundImage = "none";
+				document.getElementById("begin").style.display = "none";
+				document.getElementById("location").style.display = "block";
+			}
+			else alert("Chưa kích hoạt");
+		}
+		function scan()
+		{
+			document.getElementById("begin").style.display = "none";
+			document.getElementById("reader").style.display = "block";
+		}
+		function update()
+		{
+			km = parseInt(100 * document.getElementById("km").value);
+			if(km < 200) vnd = parseInt(document.getElementById("fee0").value);
+			else if(km < 1200) vnd = parseInt(document.getElementById("fee0").value) + ((km - 200) / 100) * parseInt(document.getElementById("fee1").value);
+			else if(km < 2500) vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + ((km - 1200) / 100) * parseInt(document.getElementById("fee2").value);
+			else vnd = parseInt(document.getElementById("fee0").value) + 10 * parseInt(document.getElementById("fee1").value) + 13 * parseInt(document.getElementById("fee2").value) + ((km - 2500) / 100) * parseInt(document.getElementById("fee3").value);
+			document.getElementById("money").innerHTML = vnd.toLocaleString();
+		}
+		function generate()
+		{
+			var fee0 = document.getElementById("fee0").value;
+			var fee1 = document.getElementById("fee1").value;
+			var fee2 = document.getElementById("fee2").value;
+			var fee3 = document.getElementById("fee3").value;
+			var code = localStorage.getItem("code");
+			var name = localStorage.getItem("name");
+			var plate = localStorage.getItem("plate");
+			localStorage.setItem("fee0", fee0);
+			localStorage.setItem("fee1", fee1);
+			localStorage.setItem("fee2", fee2);
+			localStorage.setItem("fee3", fee3);
+			if(typeof code !== "string") code = "";
+			if(typeof name !== "string") name = "";
+			if(typeof plate !== "string") plate = "";
+			code = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			document.getElementById("code").value = code;
+			document.getElementById("name").value = name;
+			document.getElementById("plate").value = plate;
+			document.getElementById("distance").value = km / 100;
+			document.getElementById("fee").value = vnd;
+			document.getElementById("addon").value = 0;
+			document.getElementById("surcharge").value = 0;
+			document.getElementById("discount").value = 0;
+			document.getElementById("code").readOnly = false;
+			document.getElementById("name").readOnly = false;
+			document.getElementById("plate").readOnly = false;
+			document.getElementById("distance").readOnly = false;
+			document.getElementById("fee").readOnly = false;
+			document.getElementById("addon").readOnly = false;
+			document.getElementById("surcharge").readOnly = false;
+			document.getElementById("discount").readOnly = false;
+			document.getElementById("location").style.display = "none";
+			document.getElementById("result").style.display = "block";
+		}
 	</script>
-
 </html>
+
 
 
 
