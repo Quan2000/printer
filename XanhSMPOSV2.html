@@ -9,6 +9,7 @@
 	<script>
 		async function test()
 		{
+			alert("OK");
 			navigator.bluetooth.requestDevice({filters: [{name: ["RPP02N"]}]}).then(device => {alert("Id: " + device.id);});
 		}
 	</script>
