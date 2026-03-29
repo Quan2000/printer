@@ -382,9 +382,29 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		let url = "https://script.google.com/macros/s/AKfycbxfsP4Xnl3DAMw_8YktbLIDyyhoynE-41liEUYhjsdIUuArsEsbeshQ-n63y2gSdNpd/exec";
 		
 		setTimeout(checkdevice, 3000);
-		function checkdevice()
+		function checkactive()
 		{
-			alert("OK");
+			var tmpindex = parseInt(localStorage.getItem("index"));
+			var tmpid = localStorage.getItem("id");
+			if((isNaN(tmpindex) == false) && (tmpid != null))
+			{
+				var obj = {
+					index: tmpindex,
+					id: tmpid
+				}
+				fetch(url, {
+					method: "POST",
+					body: JSON.stringify(obj)
+				})
+				.then(r => r.text())
+				.then(data => checkdevice(data))
+			}
+			else alert("Chưa kích hoạt");
+		}
+
+		function checkdevice(data)
+		{
+			
 		}
 		
 		const scanner = new Html5QrcodeScanner("reader",
