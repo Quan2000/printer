@@ -381,7 +381,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		var status = 0;
 		let url = "https://script.google.com/macros/s/AKfycbxPjHe24AlUw4PgI9kyNq3X3dGEdY4ThprOXbb_wAFCIa57ejbaBTrwu3TzIxPooo2A/exec";
 		
-		setTimeout(checkactive, 5000);
+		setTimeout(checkactive, 2000);
 		function checkactive()
 		{
 			var tmpindex = parseInt(localStorage.getItem("index"));
@@ -404,7 +404,20 @@ NO REFUND/KHÔNG HOÀN TIỀN
 
 		function checkdevice(data)
 		{
-			
+			var member = data.split("-");
+			if(member.length == 4)
+			{
+				if(member[3] == '1')
+				{
+					var tmpdevice = parseInt(localStorage.getItem("device"));
+					if(member[2] == tmpdevice) status = 1;
+					else alert("Thiết bị không đúng");
+				}
+				else if(member[3] == '0') alert("Chưa kích hoạt");
+				else if(member[3] == '2') alert("SĐT không đúng");
+				else setTimeout(checkactive, 5000);
+			}
+			else setTimeout(checkactive, 5000);
 		}
 		
 		const scanner = new Html5QrcodeScanner("reader",
@@ -490,8 +503,8 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					status = 1;
 					alert("Kích hoạt thành công");
 				}
-				else if(member[3] == '1') alert("Mã kích hoạt đã được sử dụng");
-				else if(member[3] == '2') alert("Mã kích hoạt không đúng");
+				else if(member[3] == '1') alert("SĐT đã được sử dụng");
+				else if(member[3] == '2') alert("SĐT không đúng");
 				else alert("Hệ thống lỗi " + state);
 			}
 			else alert("Hệ thống lỗi " + state);
