@@ -378,7 +378,20 @@ NO REFUND/KHÔNG HOÀN TIỀN
 	<script>
 		var km = 0;
 		var vnd = 0;
-		let url = "https://script.google.com/macros/s/AKfycby-r23HN4pSwEHfq1JuRkjobaRiY-iSRH8HdVQcZcK1T6zEOBa1jGMAdHt4xOsNhvJz/exec";
+		var status = 0;
+		let url = "https://script.google.com/macros/s/AKfycbxfsP4Xnl3DAMw_8YktbLIDyyhoynE-41liEUYhjsdIUuArsEsbeshQ-n63y2gSdNpd/exec";
+
+		window.onload = function()
+		{
+			var index = parseInt(localStorage.getItem("index"));
+			var id = localStorage.getItem("id");
+			if((isNaN(index) == false) && (id != null))
+			{
+				alert("OK");
+			}
+			else alert("ERR");
+		}
+		
 		const scanner = new Html5QrcodeScanner("reader",
 		{
 			qrbox:
@@ -411,8 +424,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}
 				else
 				{
-					var status = localStorage.getItem("active");
-					if(status === "1")
+					if(status == 1)
 					{
 						document.getElementById("code").value = obj.order_id;
 						document.getElementById("name").value = obj.driver_name;
@@ -452,14 +464,21 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function active(state)
 		{
-			if(state.charAt(state.length-1) == '0')
+			var member = state.split("-");
+			if(member.length == 4)
 			{
-				var status = "1";
-				localStorage.setItem("active", status);
-				alert("Kích hoạt thành công");
+				if(member[3] == '0')
+				{
+					localStorage.setItem("index", member[0]);
+					localStorage.setItem("id", member[1]);
+					localStorage.setItem("device", member[2]);
+					status = 1;
+					alert("Kích hoạt thành công");
+				}
+				else if(member[3] == '1') alert("Mã kích hoạt đã được sử dụng");
+				else if(member[3] == '2') alert("Mã kích hoạt không đúng");
+				else alert("Hệ thống lỗi " + state);
 			}
-			else if(state.charAt(state.length-1) == '1') alert("Mã kích hoạt đã được sử dụng");
-			else if(state.charAt(state.length-1) == '2') alert("Mã kích hoạt không đúng");
 			else alert("Hệ thống lỗi " + state);
 			window.location.reload();
 		}
@@ -550,8 +569,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function measure()
 		{
-			var status = localStorage.getItem("active");
-			if(status === "1")
+			if(status == 1)
 			{
 				var fee0 = parseInt(localStorage.getItem("fee0"));
 				var fee1 = parseInt(localStorage.getItem("fee1"));
