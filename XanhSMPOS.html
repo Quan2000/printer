@@ -379,9 +379,9 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		var km = 0;
 		var vnd = 0;
 		var status = 0;
-		let url = "https://script.google.com/macros/s/AKfycbxPjHe24AlUw4PgI9kyNq3X3dGEdY4ThprOXbb_wAFCIa57ejbaBTrwu3TzIxPooo2A/exec";
+		let url = "https://script.google.com/macros/s/AKfycbwchyHq-WA4LHh1qPUaXBymsSiB9eD--SU3DhS-EnsniynphZ_HpZ_7ZB6dib1mWcc2/exec";
 		
-		setTimeout(checkactive, 2000);
+		setTimeout(checkactive, 1000);
 		function checkactive()
 		{
 			var tmpindex = parseInt(localStorage.getItem("index"));
@@ -389,6 +389,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			if((isNaN(tmpindex) == false) && (tmpid != null))
 			{
 				var obj = {
+					command: 1,
 					index: tmpindex,
 					id: tmpid
 				}
@@ -500,7 +501,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 					localStorage.setItem("index", member[0]);
 					localStorage.setItem("id", member[1]);
 					localStorage.setItem("device", member[2]);
-					status = 1;
 					alert("Kích hoạt thành công");
 				}
 				else if(member[3] == '1') alert("SĐT đã được sử dụng");
