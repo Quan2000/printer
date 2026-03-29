@@ -452,7 +452,15 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function active(state)
 		{
-			alert(state);
+			if(state.charAt(state.length-1) == '0')
+			{
+				var status = "1";
+				localStorage.setItem("active", status);
+				alert("Kích hoạt thành công");
+			}
+			else if(state.charAt(state.length-1) == '1') alert("Mã kích hoạt đã được sử dụng");
+			else if(state.charAt(state.length-1) == '2') alert("Mã kích hoạt không đúng");
+			else alert("Hệ thống lỗi " + state);
 			window.location.reload();
 		}
 		function create()
