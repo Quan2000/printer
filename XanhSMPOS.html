@@ -8,19 +8,10 @@
 		<button onclick="test()">TEST</button>
 	</body>
 	<script>
-		let url = "https://script.google.com/macros/s/AKfycby-r23HN4pSwEHfq1JuRkjobaRiY-iSRH8HdVQcZcK1T6zEOBa1jGMAdHt4xOsNhvJz/exec";
+		
 		function test()
 		{
-			let obj = {
-				index: 2,
-				id: "DPQ",
-			}
-			fetch(url, {
-				method: "POST",
-				body: JSON.stringify(obj)
-			})
-			.then(r => r.text())
-			.then(data => {document.getElementById("state").innerHTML = "Trang thai: " + data})
+			alert("OK");
 		}
 	</script>
 </html>
