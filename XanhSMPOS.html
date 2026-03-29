@@ -410,8 +410,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 			{
 				if(member[3] == '1')
 				{
-					var tmpdevice = parseInt(localStorage.getItem("device"));
-					alert(member[2] + " + " + tmpdevice);
+					var tmpdevice = localStorage.getItem("device");
 					if(member[2] == tmpdevice) status = 1;
 					else alert("Thiết bị không đúng");
 				}
