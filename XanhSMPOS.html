@@ -407,7 +407,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 						body: JSON.stringify(obj)
 					})
 					.then(r => r.text())
-					.then(data => alert(data))
+					.then(state => active(state))
 				}
 				else
 				{
@@ -450,16 +450,9 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function error(result)
 		{
 		}
-		function active()
+		function active(state)
 		{
-			var status = "1";
-			localStorage.setItem("active", status);
-			alert("Kích hoạt thành công");
-			window.location.reload();
-		}
-		function unactive()
-		{
-			alert("Kích hoạt thất bại");
+			alert(state);
 			window.location.reload();
 		}
 		function create()
