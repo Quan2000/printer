@@ -380,16 +380,11 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		var vnd = 0;
 		var status = 0;
 		let url = "https://script.google.com/macros/s/AKfycbxfsP4Xnl3DAMw_8YktbLIDyyhoynE-41liEUYhjsdIUuArsEsbeshQ-n63y2gSdNpd/exec";
-
-		window.onload = function()
+		
+		setTimeout(checkdevice, 3000);
+		function checkdevice()
 		{
-			var index = parseInt(localStorage.getItem("index"));
-			var id = localStorage.getItem("id");
-			if((isNaN(index) == false) && (id != null))
-			{
-				alert("OK");
-			}
-			else alert("ERR");
+			alert("OK");
 		}
 		
 		const scanner = new Html5QrcodeScanner("reader",
