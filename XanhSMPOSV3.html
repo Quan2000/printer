@@ -373,12 +373,54 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				<button class="button2" onclick="exit()">Đóng</button>
 				<button class="button" onclick="print()">IN</button>
 			</div>
-			<img id="active" onerror="unactive()" onload="active()" />
 		</main>
 	</body>
 	<script>
 		var km = 0;
 		var vnd = 0;
+		var status = 0;
+		let url = "https://script.google.com/macros/s/AKfycbwchyHq-WA4LHh1qPUaXBymsSiB9eD--SU3DhS-EnsniynphZ_HpZ_7ZB6dib1mWcc2/exec";
+		
+		setTimeout(checkactive, 1000);
+		function checkactive()
+		{
+			var tmpindex = parseInt(localStorage.getItem("index"));
+			var tmpid = localStorage.getItem("id");
+			if((isNaN(tmpindex) == false) && (tmpid != null))
+			{
+				var obj = {
+					command: 1,
+					index: tmpindex,
+					id: tmpid
+				}
+				fetch(url, {
+					method: "POST",
+					body: JSON.stringify(obj)
+				})
+				.then(r => r.text())
+				.then(data => checkdevice(data))
+			}
+			else alert("Chưa kích hoạt");
+		}
+
+		function checkdevice(data)
+		{
+			var member = data.split("-");
+			if(member.length == 4)
+			{
+				if(member[3] == '1')
+				{
+					var tmpdevice = localStorage.getItem("device");
+					if(member[2] == tmpdevice) status = 1;
+					else alert("Thiết bị không đúng");
+				}
+				else if(member[3] == '0') alert("Chưa kích hoạt");
+				else if(member[3] == '2') alert("SĐT không đúng");
+				else setTimeout(checkactive, 5000);
+			}
+			else setTimeout(checkactive, 5000);
+		}
+		
 		const scanner = new Html5QrcodeScanner("reader",
 		{
 			qrbox:
@@ -402,12 +444,16 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				const obj = JSON.parse(result);
 				if(obj.hasOwnProperty("id"))
 				{
-					document.getElementById("active").src="https://drive.google.com/thumbnail?id=" + obj.password;
+					fetch(url, {
+						method: "POST",
+						body: JSON.stringify(obj)
+					})
+					.then(r => r.text())
+					.then(state => active(state))
 				}
 				else
 				{
-					var status = localStorage.getItem("active");
-					if(status === "1")
+					if(status == 1)
 					{
 						document.getElementById("code").value = obj.order_id;
 						document.getElementById("name").value = obj.driver_name;
@@ -445,16 +491,23 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		function error(result)
 		{
 		}
-		function active()
+		function active(state)
 		{
-			var status = "1";
-			localStorage.setItem("active", status);
-			alert("Kích hoạt thành công");
-			window.location.reload();
-		}
-		function unactive()
-		{
-			alert("Kích hoạt thất bại");
+			var member = state.split("-");
+			if(member.length == 4)
+			{
+				if(member[3] == '0')
+				{
+					localStorage.setItem("index", member[0]);
+					localStorage.setItem("id", member[1]);
+					localStorage.setItem("device", member[2]);
+					alert("Kích hoạt thành công");
+				}
+				else if(member[3] == '1') alert("SĐT đã được sử dụng");
+				else if(member[3] == '2') alert("SĐT không đúng");
+				else alert("Hệ thống lỗi " + state);
+			}
+			else alert("Hệ thống lỗi " + state);
 			window.location.reload();
 		}
 		function create()
@@ -544,8 +597,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 		function measure()
 		{
-			var status = localStorage.getItem("active");
-			if(status === "1")
+			if(status == 1)
 			{
 				var fee0 = parseInt(localStorage.getItem("fee0"));
 				var fee1 = parseInt(localStorage.getItem("fee1"));
@@ -621,53 +673,3 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		}
 	</script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
