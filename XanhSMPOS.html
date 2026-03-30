@@ -173,9 +173,9 @@
 		<script src="https://raw.githubusercontent.com/eKoopmans/html2pdf.js/refs/heads/main/dist/html2pdf.bundle.min.js"></script>
 	<body data-rsssl=1>
 		<main>
-			<div id="begin">
-				<button id="scan" onclick="scan()" class="button3" hidden>Quét mã QR</button>
-				<button id="measure" onclick="measure()" class="button1" hidden>Tạo cuốc</button>
+			<div id="begin" hidden>
+				<button id="scan" onclick="scan()" class="button3">Quét mã QR</button>
+				<button id="measure" onclick="measure()" class="button1">Tạo cuốc</button>
 			</div>
 			<div id="location">
 				<b>Nhập quãng đường để tạo biên lai</b>
@@ -400,7 +400,11 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				.then(r => r.text())
 				.then(data => checkdevice(data))
 			}
-			else alert("Chưa kích hoạt");
+			else
+			{
+				document.getElementById("begin").style.display = "block";
+				alert("Chưa kích hoạt");
+			}
 		}
 
 		function checkdevice(data)
@@ -416,9 +420,10 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				}
 				else if(member[3] == '0') alert("Chưa kích hoạt");
 				else if(member[3] == '2') alert("SĐT không đúng");
-				else setTimeout(checkactive, 5000);
+				else alert("Hệ thống lỗi");
 			}
-			else setTimeout(checkactive, 5000);
+			else alert("Hệ thống lỗi");
+			document.getElementById("begin").style.display = "block";
 		}
 		
 		const scanner = new Html5QrcodeScanner("reader",
