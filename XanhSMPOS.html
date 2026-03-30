@@ -174,8 +174,8 @@
 	<body data-rsssl=1>
 		<main>
 			<div id="begin">
-				<button id="scan" onclick="scan()" class="button3">Quét mã QR</button>
-				<button id="measure" onclick="measure()" class="button1">Tạo cuốc</button>
+				<button id="scan" onclick="scan()" class="button3" hidden>Quét mã QR</button>
+				<button id="measure" onclick="measure()" class="button1" hidden>Tạo cuốc</button>
 			</div>
 			<div id="location">
 				<b>Nhập quãng đường để tạo biên lai</b>
@@ -381,15 +381,13 @@ NO REFUND/KHÔNG HOÀN TIỀN
 		var status = 0;
 		let url = "https://script.google.com/macros/s/AKfycbwchyHq-WA4LHh1qPUaXBymsSiB9eD--SU3DhS-EnsniynphZ_HpZ_7ZB6dib1mWcc2/exec";
 		
-		setTimeout(checkactive, 100);
+		setTimeout(checkactive, 1);
 		function checkactive()
 		{
 			var tmpindex = parseInt(localStorage.getItem("index"));
 			var tmpid = localStorage.getItem("id");
 			if((isNaN(tmpindex) == false) && (tmpid != null))
 			{
-				document.getElementById("scan").style.display = "none";
-				document.getElementById("measure").style.display = "none";
 				var obj = {
 					command: 1,
 					index: tmpindex,
