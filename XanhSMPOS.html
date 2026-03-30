@@ -409,6 +409,7 @@ NO REFUND/KHÔNG HOÀN TIỀN
 
 		function checkdevice(data)
 		{
+			document.getElementById("begin").style.display = "block";
 			var member = data.split("-");
 			if(member.length == 4)
 			{
@@ -423,7 +424,6 @@ NO REFUND/KHÔNG HOÀN TIỀN
 				else alert("Hệ thống lỗi");
 			}
 			else alert("Hệ thống lỗi");
-			document.getElementById("begin").style.display = "block";
 		}
 		
 		const scanner = new Html5QrcodeScanner("reader",
